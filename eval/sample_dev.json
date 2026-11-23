@@ -1,0 +1,20 @@
+[
+  {"question": "Could a digital library suggest related preprints from what readers open, before those papers have accumulated citations?", "arxiv_id": "0704.2963"},
+  {"question": "How can neighboring motes share the cost of sending a message so that the one with the weakest battery stays online longer?", "arxiv_id": "0704.3396"},
+  {"question": "Which work adapts an existing open-source recognizer to transcribe continuous speech from Arabic speakers?", "arxiv_id": "0704.2083"},
+  {"question": "How should vertices be laid out in memory so an update over a computational mesh runs efficiently on machines with different cache sizes?", "arxiv_id": "0705.1033"},
+  {"question": "A hiker needs a near-shortest route over a triangulated landscape and can never climb. Which algorithm handles that constraint?", "arxiv_id": "0705.1364"},
+  {"question": "How could an ad platform learn the click potential of a newcomer while keeping the usual sponsored placement auction mostly intact?", "arxiv_id": "0707.1053"},
+  {"question": "If only a few symbols from a large alphabet have appeared, how can one estimate the chance of the entire observed string consistently?", "arxiv_id": "0704.1455"},
+  {"question": "Which compression scheme begins decoding from the least significant digits of an integer and can reproduce familiar prefix codes?", "arxiv_id": "0704.0834"},
+  {"question": "Which study diagnoses damage in cylindrical shells from oscillation measurements using a combination of fuzzy rules and learning?", "arxiv_id": "0705.2236"},
+  {"question": "Is there a way to avoid repeatedly choosing the same variables while training a support vector machine in small subproblems?", "arxiv_id": "0706.0585"},
+  {"question": "What happens to the set of valid vertex color assignments when more edges are added to a sparse random network?", "arxiv_id": "0704.1269"},
+  {"question": "Which simulation lets groups of neural-network traders evolve their structure while deciding whether to buy or sell stocks?", "arxiv_id": "0705.1757"},
+  {"question": "How can discontinuities be distinguished from measurement noise when the available information is a truncated spectrum?", "arxiv_id": "0704.3822"},
+  {"question": "Which paper determines the computational complexity of finding a stable pair of strategies when two players each have a payoff matrix?", "arxiv_id": "0704.1678"},
+  {"question": "How can the force and motion equations be obtained explicitly for the translating platform of a three-degree-of-freedom parallel robot?", "arxiv_id": "0707.2185"},
+  {"question": "Which approach places sensors on a rotorcraft's composite component and uses their responses to locate structural damage?", "arxiv_id": "0705.4654"},
+  {"question": "How can roots of the radial polynomials used for a circular optical pupil be computed with cubic convergence?", "arxiv_id": "0705.1329"},
+  {"question": "Is there a way to describe problem difficulty by setting aside an exceptional set of inputs, even for an undecidable problem?", "arxiv_id": "0707.1364"}
+]
