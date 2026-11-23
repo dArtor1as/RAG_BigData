@@ -1,0 +1,12 @@
+*.parquet
+!data/sample_1k.parquet
+*.npy
+*.index
+*.zip
+
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+.DS_Store
