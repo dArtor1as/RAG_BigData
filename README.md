@@ -6,6 +6,7 @@ RAG-система інтелектуального пошуку по анота
 
 - [Студент 1 — дані та Spark](#студент-1--дані-та-spark)
 - [Student 2 — embeddings and index](#student-2--embeddings-and-index)
+- [Студент 3 — запит і генерація](#студент-3--запит-і-генерація)
 
 Великі файли (повний Parquet, `.npy`, індекси, повний `catalog.sqlite`) у git не комітимо, вони лежать на Google Диску:
 
@@ -149,3 +150,59 @@ hits = retriever.search("How do sensor networks extend battery lifetime?", k=10)
 ```
 
 To create all three index variants for an additional encoder, first encode it and run `python -m src.build_index --work artifacts/full --model minilm`. To check the supplied row-alignment regressions, run `python -m unittest discover -s tests -v`.
+
+## Студент 3 — запит і генерація
+
+Усе між питанням і відповіддю: покращення пошуку на рівні запиту, збирання контексту, генерація з посиланнями `[1]`, `[2]` і перевірка, чи підтверджують їх джерела. Кожне покращення вмикається прапорцем, щоб його внесок можна було виміряти окремо.
+
+### Запуск
+
+```powershell
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+ollama pull qwen3:4b
+ollama pull qwen3:0.6b
+python -m src.cli "How can neighboring sensors conserve battery power?" --rerank
+streamlit run src/app.py
+```
+
+За замовчуванням працює вибірка `artifacts/sample`. Для повного корпусу покладіть з Google Диску `catalog.sqlite` і `bge/indexes/hnsw/` в `artifacts/full/` (з тією ж структурою) і задайте змінні:
+
+```powershell
+$env:RAG_WORK = "artifacts/full"; $env:RAG_MODEL = "bge"; $env:RAG_INDEX = "hnsw"
+```
+
+Gemini замість Ollama: `$env:GEMINI_API_KEY = "..."` і `--backend gemini` (або перемикач у Streamlit). Ключ не комітимо.
+
+### Модулі
+
+- **`src/generator.py`** — `answer(query, k, model, use_rag, hyde, rerank, backend)` повертає `{"answer", "sources", ...}`. Джерела нумеруються `[1]…[k]`; LLM відповідає лише за ними, мовою питання, з посиланнями, або повертає `NOT_FOUND`. Додаткові ключі: `refused`, `refusal_reason`, `claims`, `supported_ratio`, `timings`, `hyde_passage`. Це спільна точка входу для CLI, Streamlit і веб-сервісу.
+- **`src/llm.py`** — `generate(prompt, system, model, backend)`: Ollama (`qwen3:4b`, `qwen3:0.6b`, режим міркувань вимкнено) або Gemini. Ту саму функцію можна використати для LLM-судді.
+- **`src/query.py`** — `retrieve(query, k, hyde, use_rerank)`:
+  - **HyDE** (Gao et al., 2022): LLM пише гіпотетичну анотацію, і пошук іде за середнім вектором анотації та питання;
+  - **reranker** `cross-encoder/ms-marco-MiniLM-L-6-v2` переоцінює топ-50 і лишає топ-k;
+  - **поріг відмови**: якщо найкраща анотація недостатньо схожа на питання, LLM не викликається.
+
+  Пороги підбирає `python -m src.query --calibrate` на питаннях з корпусу (`eval/sample_dev.json`) і поза ним (`eval/sample_offtopic.json`). Результат зберігається в `<RAG_WORK>/thresholds.json`.
+- **`src/citations.py`** — `verify_citations()`: ділить відповідь на речення і рахує косинус кожного речення з процитованою анотацією (енкодер BGE). Статуси: `ok`, `no_citation`, `bad_index`, `low_similarity`.
+- **`src/profiling.py`** — час кожного етапу (`hyde`, `encode`, `search`, `rerank`, `llm`, `verify`). `python -m src.profiling --limit 10` записує `results/profiling.csv` і `results/profiling.md`.
+- **`src/cli.py`**, **`src/app.py`** — консоль і Streamlit:
+  - перемикачі моделі, k, RAG, HyDE, reranker і порогу;
+  - джерела зі score і посиланням на arXiv;
+  - непідтверджені речення підсвічені.
+
+Тести без LLM та індексу: `python -m unittest discover -s tests -v`.
+
+### Перші результати на вибірці (1000 статей)
+
+Калібрування порогу: 18 питань з корпусу проти 12 поза корпусом.
+- **Косинус** питання з найкращою анотацією: поріг 0.621 розділяє обидві групи без помилок. Зазор вузький: 0.630 проти 0.612.
+- **Cross-encoder**: поріг −5.66, balanced accuracy 97%.
+
+На повному корпусі й тестових питаннях студента 4 пороги треба підібрати заново.
+
+### Обмеження
+
+- `ms-marco` reranker і енкодер BGE навчені англійською. Для питань українською пошук і перевірка цитат працюють гірше; варіант — модель `e5` (multilingual), яку вже підтримує `src/common.py`.
+- Перевірка цитат міряє схожість тексту, а не логічне слідування, тому може пропустити перекручений факт зі «схожими» словами.
