@@ -1,0 +1,39 @@
+{
+  "config": {
+    "source_sha256": "ca9feab485e801a34c57b1ec8860ea44e833888f142f66b90e6529d7f45e73ad",
+    "rows": 1000,
+    "model": "bge",
+    "encoder": {
+      "repo": "BAAI/bge-small-en-v1.5",
+      "revision": "5c38ec7c405ec4b44b94cc5a9bb96e735b38267a",
+      "passage": "",
+      "query": "Represent this sentence for searching relevant passages: "
+    },
+    "dimension": 384,
+    "dtype": "float16",
+    "normalized": true,
+    "chunk_size": 250
+  },
+  "parts": {
+    "emb_00000.npy": {
+      "start": 0,
+      "stop": 250,
+      "sha256": "d036c5a8c5e5fc4a63118833b7df1d1c84c7aeaa6cf28d2708c8841b6a8c0756"
+    },
+    "emb_00001.npy": {
+      "start": 250,
+      "stop": 500,
+      "sha256": "ad5997f7abdeada8ddb9a1be9825a1410f3de468acf9c0b81deaac5794e4a23a"
+    },
+    "emb_00002.npy": {
+      "start": 500,
+      "stop": 750,
+      "sha256": "a8717d926f36410589290c992326ef70f874a1167890ac93b5ca49a84d933e38"
+    },
+    "emb_00003.npy": {
+      "start": 750,
+      "stop": 1000,
+      "sha256": "0afe06a3af9e42c54fa85957121514afe4ec817fb61e0618da2285e828f922dc"
+    }
+  }
+}

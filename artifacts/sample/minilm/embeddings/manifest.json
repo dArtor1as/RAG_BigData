@@ -1,0 +1,39 @@
+{
+  "config": {
+    "source_sha256": "ca9feab485e801a34c57b1ec8860ea44e833888f142f66b90e6529d7f45e73ad",
+    "rows": 1000,
+    "model": "minilm",
+    "encoder": {
+      "repo": "sentence-transformers/all-MiniLM-L6-v2",
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "passage": "",
+      "query": ""
+    },
+    "dimension": 384,
+    "dtype": "float16",
+    "normalized": true,
+    "chunk_size": 250
+  },
+  "parts": {
+    "emb_00000.npy": {
+      "start": 0,
+      "stop": 250,
+      "sha256": "d14c8a5749e48c7c1c86f884de54e030a1cef6673d15c1d3285c557529e7df5b"
+    },
+    "emb_00001.npy": {
+      "start": 250,
+      "stop": 500,
+      "sha256": "c66ff31bf1512a298ffe2e45a352ef863e8dd9b59333675ea59615a522a49342"
+    },
+    "emb_00002.npy": {
+      "start": 500,
+      "stop": 750,
+      "sha256": "920865c53db17d4e601f82731247d5a52a9a978f64f155f1f30f5dabd7573d32"
+    },
+    "emb_00003.npy": {
+      "start": 750,
+      "stop": 1000,
+      "sha256": "512cc17c1fd6f24b862351d9d755243f8febeff7cea046a2b761207e011040fd"
+    }
+  }
+}
