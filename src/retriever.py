@@ -41,13 +41,27 @@ class Retriever:
         self.index = open_index(self.work, self.model, index)
         self.encoder = load_encoder(self.model, device)
 
+    def encode(self, texts: list[str], side: str = "query"):
+        """Кодує тексти тим самим енкодером, що й індекс.
+
+        side="query" додає префікс запиту моделі (для BGE — інструкцію пошуку),
+        side="passage" кодує текст як документ корпусу. HyDE і перевірка цитат
+        працюють саме з passage, бо порівнюють текст з анотаціями.
+        """
+        if side not in ("query", "passage"):
+            raise ValueError("side must be 'query' or 'passage'.")
+        return encode_texts(self.encoder, [t.strip() for t in texts], self.model, side, 32)
+
     def search(self, query: str, k: int) -> list[dict]:
         if not isinstance(query, str) or not query.strip():
             raise ValueError("The query must be a nonempty string.")
+        return self.search_vector(self.encode([query], "query"), k)
+
+    def search_vector(self, vector, k: int) -> list[dict]:
+        """Пошук за готовим нормалізованим вектором форми (1, d); формат результату як у search()."""
         if isinstance(k, bool) or not isinstance(k, int) or k < 1:
             raise ValueError("k must be a positive integer.")
         k = min(k, self.index.ntotal)
-        vector = encode_texts(self.encoder, [query.strip()], self.model, "query", 1)
         scores, ids = self.index.search(vector, k)
         if isinstance(self.index, faiss.IndexIVFPQ):
             # A large k can exhaust the probed lists. Per-call parameters keep other queries independent.
@@ -74,11 +88,16 @@ def _default(work, model, index):
     return Retriever(work, model, index, device="cpu")
 
 
-def search(query: str, k: int) -> list[dict]:
-    """Return ranked row_id, arxiv_id, title, text and score records."""
+def get_retriever() -> Retriever:
+    """Кешований Retriever за змінними RAG_WORK, RAG_MODEL, RAG_INDEX — той самий, що в search()."""
     work = Path(os.environ.get("RAG_WORK", DEFAULT_WORK))
     model = os.environ.get("RAG_MODEL") or selected_model(work)
-    return _default(work.resolve(), model, os.environ.get("RAG_INDEX", "hnsw")).search(query, k)
+    return _default(work.resolve(), model, os.environ.get("RAG_INDEX", "hnsw"))
+
+
+def search(query: str, k: int) -> list[dict]:
+    """Return ranked row_id, arxiv_id, title, text and score records."""
+    return get_retriever().search(query, k)
 
 
 def main():
