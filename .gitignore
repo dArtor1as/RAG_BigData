@@ -10,3 +10,12 @@ __pycache__/
 venv/
 .ipynb_checkpoints/
 .DS_Store
+
+# IDE
+.idea/
+
+# Повний корпус і індекси з Google Диску (лише локально)
+artifacts/full/
+
+# Ключі API (GEMINI_API_KEY тощо)
+.env
