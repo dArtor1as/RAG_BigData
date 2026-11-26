@@ -1,0 +1,41 @@
+model,config,question,hyde,encode,search,rerank,llm,verify,total,refused
+qwen3:4b-instruct,base,"Could a digital library suggest related preprints from what readers open, before those papers have accumulated citations?",0.0,0.0254,0.0024,0.0,4.7237,0.0738,4.8253,False
+qwen3:4b-instruct,base,How can neighboring motes share the cost of sending a message so that the one with the weakest battery stays online longer?,0.0,0.0211,0.0085,0.0,0.0,0.0,0.0297,True
+qwen3:4b-instruct,base,Which work adapts an existing open-source recognizer to transcribe continuous speech from Arabic speakers?,0.0,0.0205,0.0079,0.0,4.3351,0.1135,4.4769,False
+qwen3:4b-instruct,base,How should vertices be laid out in memory so an update over a computational mesh runs efficiently on machines with different cache sizes?,0.0,0.0233,0.0061,0.0,7.7014,0.4825,8.2133,False
+qwen3:4b-instruct,base,A hiker needs a near-shortest route over a triangulated landscape and can never climb. Which algorithm handles that constraint?,0.0,0.0227,0.0052,0.0,5.5231,0.1798,5.7309,False
+qwen3:4b-instruct,base,How could an ad platform learn the click potential of a newcomer while keeping the usual sponsored placement auction mostly intact?,0.0,0.0241,0.0039,0.0,1.2203,0.0,1.2484,True
+qwen3:4b-instruct,base,"If only a few symbols from a large alphabet have appeared, how can one estimate the chance of the entire observed string consistently?",0.0,0.0215,0.0052,0.0,7.0423,0.2818,7.3508,False
+qwen3:4b-instruct,base,Which compression scheme begins decoding from the least significant digits of an integer and can reproduce familiar prefix codes?,0.0,0.0208,0.0053,0.0,1.0544,0.0,1.0805,True
+qwen3:4b-instruct,base,Which study diagnoses damage in cylindrical shells from oscillation measurements using a combination of fuzzy rules and learning?,0.0,0.0237,0.0047,0.0,1.0489,0.0,1.0772,True
+qwen3:4b-instruct,base,Is there a way to avoid repeatedly choosing the same variables while training a support vector machine in small subproblems?,0.0,0.0256,0.0055,0.0,1.029,0.0,1.0601,True
+qwen3:4b-instruct,+rerank,"Could a digital library suggest related preprints from what readers open, before those papers have accumulated citations?",0.0,0.0176,0.0199,2.5348,5.5667,0.2213,8.3603,False
+qwen3:4b-instruct,+rerank,How can neighboring motes share the cost of sending a message so that the one with the weakest battery stays online longer?,0.0,0.0192,0.0208,2.685,0.0,0.0,2.725,True
+qwen3:4b-instruct,+rerank,Which work adapts an existing open-source recognizer to transcribe continuous speech from Arabic speakers?,0.0,0.0164,0.0161,2.7543,5.2213,0.1409,8.149,False
+qwen3:4b-instruct,+rerank,How should vertices be laid out in memory so an update over a computational mesh runs efficiently on machines with different cache sizes?,0.0,0.0365,0.0181,2.8993,6.7858,0.4582,10.198,False
+qwen3:4b-instruct,+rerank,A hiker needs a near-shortest route over a triangulated landscape and can never climb. Which algorithm handles that constraint?,0.0,0.0204,0.0182,2.9111,6.8521,0.2185,10.0203,False
+qwen3:4b-instruct,+rerank,How could an ad platform learn the click potential of a newcomer while keeping the usual sponsored placement auction mostly intact?,0.0,0.0176,0.0144,2.337,5.5816,0.3105,8.261,False
+qwen3:4b-instruct,+rerank,"If only a few symbols from a large alphabet have appeared, how can one estimate the chance of the entire observed string consistently?",0.0,0.0185,0.0158,2.9087,7.1953,0.2341,10.3724,False
+qwen3:4b-instruct,+rerank,Which compression scheme begins decoding from the least significant digits of an integer and can reproduce familiar prefix codes?,0.0,0.0183,0.0143,2.6754,5.7773,0.1145,8.5998,False
+qwen3:4b-instruct,+rerank,Which study diagnoses damage in cylindrical shells from oscillation measurements using a combination of fuzzy rules and learning?,0.0,0.0348,0.0182,2.692,5.3303,0.183,8.2583,False
+qwen3:4b-instruct,+rerank,Is there a way to avoid repeatedly choosing the same variables while training a support vector machine in small subproblems?,0.0,0.0399,0.0241,2.3931,5.1633,0.1426,7.7631,False
+qwen3:4b-instruct,+hyde,"Could a digital library suggest related preprints from what readers open, before those papers have accumulated citations?",5.2402,0.1376,0.0193,0.0,0.0,0.0,5.397,True
+qwen3:4b-instruct,+hyde,How can neighboring motes share the cost of sending a message so that the one with the weakest battery stays online longer?,5.7479,0.1319,0.0353,0.0,0.0,0.0,5.915,True
+qwen3:4b-instruct,+hyde,Which work adapts an existing open-source recognizer to transcribe continuous speech from Arabic speakers?,4.7414,0.146,0.0169,0.0,4.8513,0.096,9.8515,False
+qwen3:4b-instruct,+hyde,How should vertices be laid out in memory so an update over a computational mesh runs efficiently on machines with different cache sizes?,5.0277,0.1835,0.0316,0.0,7.84,0.4613,13.5442,False
+qwen3:4b-instruct,+hyde,A hiker needs a near-shortest route over a triangulated landscape and can never climb. Which algorithm handles that constraint?,5.7956,0.1156,0.0277,0.0,8.0364,0.2181,14.1934,False
+qwen3:4b-instruct,+hyde,How could an ad platform learn the click potential of a newcomer while keeping the usual sponsored placement auction mostly intact?,5.2255,0.1355,0.0245,0.0,5.7878,0.1544,11.3276,False
+qwen3:4b-instruct,+hyde,"If only a few symbols from a large alphabet have appeared, how can one estimate the chance of the entire observed string consistently?",6.1357,0.1291,0.0399,0.0,7.081,0.3373,13.7231,False
+qwen3:4b-instruct,+hyde,Which compression scheme begins decoding from the least significant digits of an integer and can reproduce familiar prefix codes?,5.095,0.1822,0.0403,0.0,0.743,0.0,6.0605,True
+qwen3:4b-instruct,+hyde,Which study diagnoses damage in cylindrical shells from oscillation measurements using a combination of fuzzy rules and learning?,4.0819,0.1154,0.0423,0.0,4.7169,0.1764,9.1329,False
+qwen3:4b-instruct,+hyde,Is there a way to avoid repeatedly choosing the same variables while training a support vector machine in small subproblems?,5.399,0.1444,0.0413,0.0,5.052,0.1412,10.7779,False
+qwen3:4b-instruct,+hyde+rerank,"Could a digital library suggest related preprints from what readers open, before those papers have accumulated citations?",4.553,0.1262,0.0504,2.49,0.0,0.0,7.2196,True
+qwen3:4b-instruct,+hyde+rerank,How can neighboring motes share the cost of sending a message so that the one with the weakest battery stays online longer?,5.1403,0.1239,0.0451,2.3544,0.0,0.0,7.6637,True
+qwen3:4b-instruct,+hyde+rerank,Which work adapts an existing open-source recognizer to transcribe continuous speech from Arabic speakers?,5.1992,0.1444,0.0321,2.4808,4.9171,0.1412,12.9148,False
+qwen3:4b-instruct,+hyde+rerank,How should vertices be laid out in memory so an update over a computational mesh runs efficiently on machines with different cache sizes?,4.7854,0.1769,0.0381,2.8923,8.5424,0.5163,16.9513,False
+qwen3:4b-instruct,+hyde+rerank,A hiker needs a near-shortest route over a triangulated landscape and can never climb. Which algorithm handles that constraint?,4.561,0.1189,0.0343,2.9515,5.7137,0.1424,13.5218,False
+qwen3:4b-instruct,+hyde+rerank,How could an ad platform learn the click potential of a newcomer while keeping the usual sponsored placement auction mostly intact?,5.4111,0.1481,0.0327,2.501,5.0528,0.3081,13.4538,False
+qwen3:4b-instruct,+hyde+rerank,"If only a few symbols from a large alphabet have appeared, how can one estimate the chance of the entire observed string consistently?",5.0802,0.1223,0.0346,2.819,7.5147,0.321,15.8918,False
+qwen3:4b-instruct,+hyde+rerank,Which compression scheme begins decoding from the least significant digits of an integer and can reproduce familiar prefix codes?,5.6231,0.1746,0.0529,2.6883,5.9525,0.1112,14.6025,False
+qwen3:4b-instruct,+hyde+rerank,Which study diagnoses damage in cylindrical shells from oscillation measurements using a combination of fuzzy rules and learning?,4.7046,0.1169,0.0537,2.2519,1.3862,0.0,8.5132,True
+qwen3:4b-instruct,+hyde+rerank,Is there a way to avoid repeatedly choosing the same variables while training a support vector machine in small subproblems?,4.5639,0.1006,0.0224,2.8326,5.3626,0.1368,13.0188,False

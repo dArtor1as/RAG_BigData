@@ -1,0 +1,19 @@
+{
+  "source_sha256": "ca9feab485e801a34c57b1ec8860ea44e833888f142f66b90e6529d7f45e73ad",
+  "rows": 1000,
+  "model": "minilm",
+  "encoder": {
+    "repo": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "passage": "",
+    "query": ""
+  },
+  "index": "flat",
+  "dimension": 384,
+  "embedding_sha256": "ce8d543dadc6394e1f087a15f8fa4de3600c3de2e1944f1fa75c7256e7c60163",
+  "params": {},
+  "build_threads": 4,
+  "build_seconds": 0.002413167999975485,
+  "bytes": 1536045,
+  "faiss_version": "1.16.0"
+}

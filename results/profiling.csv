@@ -1,0 +1,81 @@
+model,config,question,hyde,encode,search,rerank,llm,verify,total,refused
+qwen3:0.6b,base,"Could a digital library suggest related preprints from what readers open, before those papers have accumulated citations?",0.0,0.0186,0.001,0.0,0.4411,0.2721,0.7329,False
+qwen3:0.6b,base,How can neighboring motes share the cost of sending a message so that the one with the weakest battery stays online longer?,0.0,0.0246,0.0034,0.0,0.4679,0.1046,0.6004,False
+qwen3:0.6b,base,Which work adapts an existing open-source recognizer to transcribe continuous speech from Arabic speakers?,0.0,0.0193,0.0021,0.0,1.4828,0.1835,1.6877,False
+qwen3:0.6b,base,How should vertices be laid out in memory so an update over a computational mesh runs efficiently on machines with different cache sizes?,0.0,0.0227,0.0019,0.0,0.5422,0.2097,0.7765,False
+qwen3:0.6b,base,A hiker needs a near-shortest route over a triangulated landscape and can never climb. Which algorithm handles that constraint?,0.0,0.0238,0.0023,0.0,0.6897,0.1328,0.8486,False
+qwen3:0.6b,base,How could an ad platform learn the click potential of a newcomer while keeping the usual sponsored placement auction mostly intact?,0.0,0.0232,0.0017,0.0,0.5104,0.1646,0.6999,False
+qwen3:0.6b,base,"If only a few symbols from a large alphabet have appeared, how can one estimate the chance of the entire observed string consistently?",0.0,0.0188,0.0017,0.0,0.6343,0.1413,0.7961,False
+qwen3:0.6b,base,Which compression scheme begins decoding from the least significant digits of an integer and can reproduce familiar prefix codes?,0.0,0.02,0.0026,0.0,0.7304,0.2139,0.9669,False
+qwen3:0.6b,base,Which study diagnoses damage in cylindrical shells from oscillation measurements using a combination of fuzzy rules and learning?,0.0,0.0223,0.0032,0.0,0.384,0.0743,0.4839,False
+qwen3:0.6b,base,Is there a way to avoid repeatedly choosing the same variables while training a support vector machine in small subproblems?,0.0,0.018,0.0024,0.0,0.9907,0.2832,1.2943,False
+qwen3:0.6b,+rerank,"Could a digital library suggest related preprints from what readers open, before those papers have accumulated citations?",0.0,0.0171,0.0041,2.2827,0.5539,0.1414,2.9991,False
+qwen3:0.6b,+rerank,How can neighboring motes share the cost of sending a message so that the one with the weakest battery stays online longer?,0.0,0.0195,0.0073,2.1299,1.0063,0.1451,3.3082,False
+qwen3:0.6b,+rerank,Which work adapts an existing open-source recognizer to transcribe continuous speech from Arabic speakers?,0.0,0.0174,0.0034,1.8576,1.0412,0.2443,3.1639,False
+qwen3:0.6b,+rerank,How should vertices be laid out in memory so an update over a computational mesh runs efficiently on machines with different cache sizes?,0.0,0.0201,0.0042,2.994,1.7228,0.2921,5.0332,False
+qwen3:0.6b,+rerank,A hiker needs a near-shortest route over a triangulated landscape and can never climb. Which algorithm handles that constraint?,0.0,0.0172,0.007,2.4884,0.8263,0.1269,3.4657,False
+qwen3:0.6b,+rerank,How could an ad platform learn the click potential of a newcomer while keeping the usual sponsored placement auction mostly intact?,0.0,0.0168,0.004,1.9401,0.865,0.2197,3.0456,False
+qwen3:0.6b,+rerank,"If only a few symbols from a large alphabet have appeared, how can one estimate the chance of the entire observed string consistently?",0.0,0.017,0.0037,2.4156,0.9536,0.1382,3.528,False
+qwen3:0.6b,+rerank,Which compression scheme begins decoding from the least significant digits of an integer and can reproduce familiar prefix codes?,0.0,0.0169,0.0047,2.6701,1.612,0.1711,4.4748,False
+qwen3:0.6b,+rerank,Which study diagnoses damage in cylindrical shells from oscillation measurements using a combination of fuzzy rules and learning?,0.0,0.0172,0.006,1.9871,0.6374,0.1493,2.7971,False
+qwen3:0.6b,+rerank,Is there a way to avoid repeatedly choosing the same variables while training a support vector machine in small subproblems?,0.0,0.016,0.0045,2.0481,0.5821,0.107,2.7577,False
+qwen3:0.6b,+hyde,"Could a digital library suggest related preprints from what readers open, before those papers have accumulated citations?",0.4042,0.065,0.003,0.0,4.5062,1.1063,6.0848,False
+qwen3:0.6b,+hyde,How can neighboring motes share the cost of sending a message so that the one with the weakest battery stays online longer?,0.4359,0.1077,0.0028,0.0,0.6121,0.1103,1.2689,False
+qwen3:0.6b,+hyde,Which work adapts an existing open-source recognizer to transcribe continuous speech from Arabic speakers?,0.3134,0.0688,0.0024,0.0,0.4451,0.0681,0.8978,False
+qwen3:0.6b,+hyde,How should vertices be laid out in memory so an update over a computational mesh runs efficiently on machines with different cache sizes?,0.5499,0.1613,0.0031,0.0,1.1679,0.2023,2.0844,False
+qwen3:0.6b,+hyde,A hiker needs a near-shortest route over a triangulated landscape and can never climb. Which algorithm handles that constraint?,0.4414,0.1041,0.001,0.0,0.4413,0.1243,1.1123,False
+qwen3:0.6b,+hyde,How could an ad platform learn the click potential of a newcomer while keeping the usual sponsored placement auction mostly intact?,0.4599,0.1265,0.0027,0.0,0.5442,0.1617,1.295,False
+qwen3:0.6b,+hyde,"If only a few symbols from a large alphabet have appeared, how can one estimate the chance of the entire observed string consistently?",0.5793,0.0868,0.0012,0.0,0.3967,0.0769,1.141,False
+qwen3:0.6b,+hyde,Which compression scheme begins decoding from the least significant digits of an integer and can reproduce familiar prefix codes?,0.3076,0.0826,0.0024,0.0,4.6216,0.5852,5.5994,False
+qwen3:0.6b,+hyde,Which study diagnoses damage in cylindrical shells from oscillation measurements using a combination of fuzzy rules and learning?,0.3647,0.0917,0.0027,0.0,0.5636,0.1229,1.1455,False
+qwen3:0.6b,+hyde,Is there a way to avoid repeatedly choosing the same variables while training a support vector machine in small subproblems?,0.4785,0.0689,0.0017,0.0,0.8948,0.0929,1.5369,False
+qwen3:0.6b,+hyde+rerank,"Could a digital library suggest related preprints from what readers open, before those papers have accumulated citations?",0.4539,0.0787,0.0097,2.1621,0.6252,0.1646,3.4942,False
+qwen3:0.6b,+hyde+rerank,How can neighboring motes share the cost of sending a message so that the one with the weakest battery stays online longer?,0.4572,0.1074,0.0073,2.1847,1.0953,0.1607,4.0126,False
+qwen3:0.6b,+hyde+rerank,Which work adapts an existing open-source recognizer to transcribe continuous speech from Arabic speakers?,0.3013,0.0688,0.0048,1.8831,0.7827,0.1935,3.2343,False
+qwen3:0.6b,+hyde+rerank,How should vertices be laid out in memory so an update over a computational mesh runs efficiently on machines with different cache sizes?,0.4135,0.1545,0.0055,2.2538,0.8506,0.1767,3.8545,False
+qwen3:0.6b,+hyde+rerank,A hiker needs a near-shortest route over a triangulated landscape and can never climb. Which algorithm handles that constraint?,0.4415,0.1075,0.0096,2.5276,1.0695,0.144,4.2997,False
+qwen3:0.6b,+hyde+rerank,How could an ad platform learn the click potential of a newcomer while keeping the usual sponsored placement auction mostly intact?,0.4108,0.1461,0.0035,1.8646,0.7291,0.2513,3.4053,False
+qwen3:0.6b,+hyde+rerank,"If only a few symbols from a large alphabet have appeared, how can one estimate the chance of the entire observed string consistently?",0.7175,0.1019,0.0033,2.7942,0.7499,0.0832,4.45,False
+qwen3:0.6b,+hyde+rerank,Which compression scheme begins decoding from the least significant digits of an integer and can reproduce familiar prefix codes?,0.2919,0.0797,0.0033,2.6366,0.7377,0.0956,3.8448,False
+qwen3:0.6b,+hyde+rerank,Which study diagnoses damage in cylindrical shells from oscillation measurements using a combination of fuzzy rules and learning?,0.3405,0.0966,0.0061,1.7909,0.7466,0.2129,3.1935,False
+qwen3:0.6b,+hyde+rerank,Is there a way to avoid repeatedly choosing the same variables while training a support vector machine in small subproblems?,0.4855,0.0892,0.004,1.9085,0.5397,0.076,3.1028,False
+qwen3:4b-instruct,base,"Could a digital library suggest related preprints from what readers open, before those papers have accumulated citations?",0.0,0.0202,0.0013,0.0,4.8126,0.1838,5.0178,False
+qwen3:4b-instruct,base,How can neighboring motes share the cost of sending a message so that the one with the weakest battery stays online longer?,0.0,0.0205,0.0019,0.0,6.7411,0.2922,7.0556,False
+qwen3:4b-instruct,base,Which work adapts an existing open-source recognizer to transcribe continuous speech from Arabic speakers?,0.0,0.0182,0.0026,0.0,4.1137,0.1251,4.2595,False
+qwen3:4b-instruct,base,How should vertices be laid out in memory so an update over a computational mesh runs efficiently on machines with different cache sizes?,0.0,0.0185,0.0033,0.0,8.9597,0.4013,9.3828,False
+qwen3:4b-instruct,base,A hiker needs a near-shortest route over a triangulated landscape and can never climb. Which algorithm handles that constraint?,0.0,0.0206,0.0027,0.0,0.7529,0.0,0.7762,True
+qwen3:4b-instruct,base,How could an ad platform learn the click potential of a newcomer while keeping the usual sponsored placement auction mostly intact?,0.0,0.0199,0.0016,0.0,5.027,0.3266,5.3751,False
+qwen3:4b-instruct,base,"If only a few symbols from a large alphabet have appeared, how can one estimate the chance of the entire observed string consistently?",0.0,0.0194,0.0013,0.0,5.626,0.1645,5.8113,False
+qwen3:4b-instruct,base,Which compression scheme begins decoding from the least significant digits of an integer and can reproduce familiar prefix codes?,0.0,0.0236,0.0093,0.0,4.852,0.1662,5.051,False
+qwen3:4b-instruct,base,Which study diagnoses damage in cylindrical shells from oscillation measurements using a combination of fuzzy rules and learning?,0.0,0.0255,0.0033,0.0,0.4666,0.0,0.4954,True
+qwen3:4b-instruct,base,Is there a way to avoid repeatedly choosing the same variables while training a support vector machine in small subproblems?,0.0,0.0205,0.0023,0.0,5.5135,0.1057,5.6419,False
+qwen3:4b-instruct,+rerank,"Could a digital library suggest related preprints from what readers open, before those papers have accumulated citations?",0.0,0.0254,0.0111,2.4231,6.2789,0.204,8.9425,False
+qwen3:4b-instruct,+rerank,How can neighboring motes share the cost of sending a message so that the one with the weakest battery stays online longer?,0.0,0.0234,0.0074,2.0814,7.2693,0.1885,9.5701,False
+qwen3:4b-instruct,+rerank,Which work adapts an existing open-source recognizer to transcribe continuous speech from Arabic speakers?,0.0,0.019,0.0056,1.6764,3.9675,0.1573,5.8258,False
+qwen3:4b-instruct,+rerank,How should vertices be laid out in memory so an update over a computational mesh runs efficiently on machines with different cache sizes?,0.0,0.0298,0.007,2.7381,7.5628,0.4021,10.7398,False
+qwen3:4b-instruct,+rerank,A hiker needs a near-shortest route over a triangulated landscape and can never climb. Which algorithm handles that constraint?,0.0,0.019,0.0081,2.4625,1.0426,0.0,3.5322,True
+qwen3:4b-instruct,+rerank,How could an ad platform learn the click potential of a newcomer while keeping the usual sponsored placement auction mostly intact?,0.0,0.0193,0.0037,1.977,4.9689,0.3128,7.2818,False
+qwen3:4b-instruct,+rerank,"If only a few symbols from a large alphabet have appeared, how can one estimate the chance of the entire observed string consistently?",0.0,0.0159,0.0057,2.3793,5.4561,0.138,7.995,False
+qwen3:4b-instruct,+rerank,Which compression scheme begins decoding from the least significant digits of an integer and can reproduce familiar prefix codes?,0.0,0.0322,0.0037,2.7023,5.4444,0.1523,8.3349,False
+qwen3:4b-instruct,+rerank,Which study diagnoses damage in cylindrical shells from oscillation measurements using a combination of fuzzy rules and learning?,0.0,0.0228,0.0037,2.016,0.6581,0.0,2.7005,True
+qwen3:4b-instruct,+rerank,Is there a way to avoid repeatedly choosing the same variables while training a support vector machine in small subproblems?,0.0,0.0255,0.0031,2.0865,4.9785,0.1061,7.1997,False
+qwen3:4b-instruct,+hyde,"Could a digital library suggest related preprints from what readers open, before those papers have accumulated citations?",4.923,0.1019,0.0016,0.0,5.9822,0.1806,11.1894,False
+qwen3:4b-instruct,+hyde,How can neighboring motes share the cost of sending a message so that the one with the weakest battery stays online longer?,5.4381,0.1591,0.0015,0.0,6.8054,0.3067,12.7108,False
+qwen3:4b-instruct,+hyde,Which work adapts an existing open-source recognizer to transcribe continuous speech from Arabic speakers?,4.6652,0.0951,0.0015,0.0,4.0286,0.1393,8.9297,False
+qwen3:4b-instruct,+hyde,How should vertices be laid out in memory so an update over a computational mesh runs efficiently on machines with different cache sizes?,4.7977,0.2069,0.0014,0.0,6.5776,0.4087,11.9923,False
+qwen3:4b-instruct,+hyde,A hiker needs a near-shortest route over a triangulated landscape and can never climb. Which algorithm handles that constraint?,5.0276,0.1273,0.0013,0.0,1.1694,0.0,6.3257,True
+qwen3:4b-instruct,+hyde,How could an ad platform learn the click potential of a newcomer while keeping the usual sponsored placement auction mostly intact?,5.6799,0.1719,0.0014,0.0,4.7436,0.3481,10.9449,False
+qwen3:4b-instruct,+hyde,"If only a few symbols from a large alphabet have appeared, how can one estimate the chance of the entire observed string consistently?",5.397,0.1224,0.0014,0.0,5.331,0.148,10.9998,False
+qwen3:4b-instruct,+hyde,Which compression scheme begins decoding from the least significant digits of an integer and can reproduce familiar prefix codes?,4.632,0.1048,0.0034,0.0,6.6586,0.1929,11.5916,False
+qwen3:4b-instruct,+hyde,Which study diagnoses damage in cylindrical shells from oscillation measurements using a combination of fuzzy rules and learning?,4.6754,0.1304,0.0037,0.0,0.5455,0.0,5.3549,True
+qwen3:4b-instruct,+hyde,Is there a way to avoid repeatedly choosing the same variables while training a support vector machine in small subproblems?,4.8092,0.0912,0.0022,0.0,5.4694,0.0967,10.4687,False
+qwen3:4b-instruct,+hyde+rerank,"Could a digital library suggest related preprints from what readers open, before those papers have accumulated citations?",5.0957,0.0993,0.0102,2.5301,4.9783,0.1126,12.8263,False
+qwen3:4b-instruct,+hyde+rerank,How can neighboring motes share the cost of sending a message so that the one with the weakest battery stays online longer?,4.5817,0.1349,0.0089,2.4455,6.309,0.3443,13.8243,False
+qwen3:4b-instruct,+hyde+rerank,Which work adapts an existing open-source recognizer to transcribe continuous speech from Arabic speakers?,3.9693,0.0913,0.0073,3.3549,4.402,0.197,12.0218,False
+qwen3:4b-instruct,+hyde+rerank,How should vertices be laid out in memory so an update over a computational mesh runs efficiently on machines with different cache sizes?,5.7574,0.2758,0.007,3.5268,9.1876,0.5893,19.3438,False
+qwen3:4b-instruct,+hyde+rerank,A hiker needs a near-shortest route over a triangulated landscape and can never climb. Which algorithm handles that constraint?,7.2508,0.3395,0.0109,3.9612,1.3707,0.0,12.9332,True
+qwen3:4b-instruct,+hyde+rerank,How could an ad platform learn the click potential of a newcomer while keeping the usual sponsored placement auction mostly intact?,6.3982,0.2516,0.012,3.2398,5.1136,0.5119,15.5271,False
+qwen3:4b-instruct,+hyde+rerank,"If only a few symbols from a large alphabet have appeared, how can one estimate the chance of the entire observed string consistently?",7.0298,0.1632,0.0088,3.3631,7.139,0.2471,17.951,False
+qwen3:4b-instruct,+hyde+rerank,Which compression scheme begins decoding from the least significant digits of an integer and can reproduce familiar prefix codes?,5.6018,0.1737,0.0069,2.8108,6.5237,0.2052,15.322,False
+qwen3:4b-instruct,+hyde+rerank,Which study diagnoses damage in cylindrical shells from oscillation measurements using a combination of fuzzy rules and learning?,5.8848,0.1682,0.0098,2.2684,4.0486,0.2765,12.6563,False
+qwen3:4b-instruct,+hyde+rerank,Is there a way to avoid repeatedly choosing the same variables while training a support vector machine in small subproblems?,5.8593,0.1481,0.0049,2.5714,5.5024,0.1709,14.2569,False

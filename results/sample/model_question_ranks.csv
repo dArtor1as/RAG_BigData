@@ -1,0 +1,37 @@
+model,question,arxiv_id,gold_rank,top_row_id
+minilm,"Could a digital library suggest related preprints from what readers open, before those papers have accumulated citations?",0704.2963,2,141
+minilm,How can neighboring motes share the cost of sending a message so that the one with the weakest battery stays online longer?,0704.3396,1,165
+minilm,Which work adapts an existing open-source recognizer to transcribe continuous speech from Arabic speakers?,0704.2083,1,99
+minilm,How should vertices be laid out in memory so an update over a computational mesh runs efficiently on machines with different cache sizes?,0705.1033,1,297
+minilm,A hiker needs a near-shortest route over a triangulated landscape and can never climb. Which algorithm handles that constraint?,0705.1364,1,330
+minilm,How could an ad platform learn the click potential of a newcomer while keeping the usual sponsored placement auction mostly intact?,0707.1053,1,759
+minilm,"If only a few symbols from a large alphabet have appeared, how can one estimate the chance of the entire observed string consistently?",0704.1455,1,66
+minilm,Which compression scheme begins decoding from the least significant digits of an integer and can reproduce familiar prefix codes?,0704.0834,1,33
+minilm,Which study diagnoses damage in cylindrical shells from oscillation measurements using a combination of fuzzy rules and learning?,0705.2236,1,396
+minilm,Is there a way to avoid repeatedly choosing the same variables while training a support vector machine in small subproblems?,0706.0585,1,528
+minilm,What happens to the set of valid vertex color assignments when more edges are added to a sparse random network?,0704.1269,2,199
+minilm,Which simulation lets groups of neural-network traders evolve their structure while deciding whether to buy or sell stocks?,0705.1757,1,363
+minilm,How can discontinuities be distinguished from measurement noise when the available information is a truncated spectrum?,0704.3822,1,198
+minilm,Which paper determines the computational complexity of finding a stable pair of strategies when two players each have a payoff matrix?,0704.1678,2,750
+minilm,How can the force and motion equations be obtained explicitly for the translating platform of a three-degree-of-freedom parallel robot?,0707.2185,2,340
+minilm,Which approach places sensors on a rotorcraft's composite component and uses their responses to locate structural damage?,0705.4654,1,498
+minilm,How can roots of the radial polynomials used for a circular optical pupil be computed with cubic convergence?,0705.1329,1,324
+minilm,"Is there a way to describe problem difficulty by setting aside an exceptional set of inputs, even for an undecidable problem?",0707.1364,1,776
+bge,"Could a digital library suggest related preprints from what readers open, before those papers have accumulated citations?",0704.2963,2,141
+bge,How can neighboring motes share the cost of sending a message so that the one with the weakest battery stays online longer?,0704.3396,2,383
+bge,Which work adapts an existing open-source recognizer to transcribe continuous speech from Arabic speakers?,0704.2083,1,99
+bge,How should vertices be laid out in memory so an update over a computational mesh runs efficiently on machines with different cache sizes?,0705.1033,1,297
+bge,A hiker needs a near-shortest route over a triangulated landscape and can never climb. Which algorithm handles that constraint?,0705.1364,1,330
+bge,How could an ad platform learn the click potential of a newcomer while keeping the usual sponsored placement auction mostly intact?,0707.1053,1,759
+bge,"If only a few symbols from a large alphabet have appeared, how can one estimate the chance of the entire observed string consistently?",0704.1455,1,66
+bge,Which compression scheme begins decoding from the least significant digits of an integer and can reproduce familiar prefix codes?,0704.0834,1,33
+bge,Which study diagnoses damage in cylindrical shells from oscillation measurements using a combination of fuzzy rules and learning?,0705.2236,1,396
+bge,Is there a way to avoid repeatedly choosing the same variables while training a support vector machine in small subproblems?,0706.0585,1,528
+bge,What happens to the set of valid vertex color assignments when more edges are added to a sparse random network?,0704.1269,1,53
+bge,Which simulation lets groups of neural-network traders evolve their structure while deciding whether to buy or sell stocks?,0705.1757,1,363
+bge,How can discontinuities be distinguished from measurement noise when the available information is a truncated spectrum?,0704.3822,1,198
+bge,Which paper determines the computational complexity of finding a stable pair of strategies when two players each have a payoff matrix?,0704.1678,1,73
+bge,How can the force and motion equations be obtained explicitly for the translating platform of a three-degree-of-freedom parallel robot?,0707.2185,2,340
+bge,Which approach places sensors on a rotorcraft's composite component and uses their responses to locate structural damage?,0705.4654,1,498
+bge,How can roots of the radial polynomials used for a circular optical pupil be computed with cubic convergence?,0705.1329,1,324
+bge,"Is there a way to describe problem difficulty by setting aside an exceptional set of inputs, even for an undecidable problem?",0707.1364,1,776

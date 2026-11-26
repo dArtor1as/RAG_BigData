@@ -1,0 +1,76 @@
+{
+  "config": {
+    "input_path": "arxiv-metadata-oai-snapshot.json",
+    "output_dir": "arxiv_cs.parquet",
+    "spark_version": "4.0.5",
+    "driver_memory": "6g",
+    "shuffle_partitions": 32,
+    "num_partitions": 12,
+    "min_abstract_len": 100
+  },
+  "funnel": [
+    {
+      "step": "raw_json",
+      "label": "Сирий датасет arXiv",
+      "count": 3261651,
+      "dropped": 0,
+      "kept_pct_of_raw": 100.0,
+      "step_time_sec": 46.45
+    },
+    {
+      "step": "filter_cs",
+      "label": "Фільтр категорій cs.*",
+      "count": 1059662,
+      "dropped": 2201989,
+      "kept_pct_of_raw": 32.49,
+      "step_time_sec": 80.28
+    },
+    {
+      "step": "clean_and_validate",
+      "label": "Очищення тексту, len(abstract) >= 100, валідний рік",
+      "count": 1059136,
+      "dropped": 526,
+      "kept_pct_of_raw": 32.47,
+      "step_time_sec": 151.91
+    },
+    {
+      "step": "dedup_arxiv_id",
+      "label": "Дедуплікація за arxiv_id",
+      "count": 1059136,
+      "dropped": 0,
+      "kept_pct_of_raw": 32.47,
+      "step_time_sec": 72.3
+    },
+    {
+      "step": "dedup_text_hash",
+      "label": "Дедуплікація за хешем тексту (SHA-256)",
+      "count": 1058983,
+      "dropped": 153,
+      "kept_pct_of_raw": 32.47,
+      "step_time_sec": 94.98
+    }
+  ],
+  "timings_sec": {
+    "raw_json": 46.45,
+    "filter_cs": 80.28,
+    "clean_and_validate": 151.91,
+    "dedup_arxiv_id": 72.3,
+    "dedup_text_hash": 94.98,
+    "assign_row_id_and_write_parquet": 283.89,
+    "total_pipeline_sec": 744.54
+  },
+  "output_info": {
+    "final_rows": 1058983,
+    "num_parquet_files": 12,
+    "total_size_mb": 1477.27,
+    "columns": [
+      "row_id",
+      "arxiv_id",
+      "title",
+      "abstract",
+      "categories",
+      "year",
+      "text"
+    ]
+  }
+}
