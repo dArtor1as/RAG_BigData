@@ -1,12 +1,11 @@
 """Профілювання етапів запиту: скільки секунд коштує кожне покращення.
 
 Запуск:
-    python -m src.profiling --questions eval/sample_dev.json --limit 10 --models qwen3:0.6b qwen3:4b
+    python -m src.profiling --questions eval/sample_dev.json --limit 10 --models qwen3:0.6b qwen3:4b-instruct
 
 Результат: results/profiling.csv (кожен запуск) і results/profiling.md (середні значення).
 """
 import argparse
-import sys
 import csv
 import json
 import statistics
@@ -40,6 +39,9 @@ class Timings(dict):
 
 def run(questions, models, configs, k, backend, out_dir):
     from .generator import answer
+    from .llm import default_backend
+
+    backend = backend or default_backend()
 
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -75,14 +77,10 @@ def run(questions, models, configs, k, backend, out_dir):
 
 
 def main():
-    # Консоль Windows за замовчуванням не UTF-8 — без цього українські літери ламаються.
-    for stream in (sys.stdout, sys.stderr):
-        if hasattr(stream, "reconfigure"):
-            stream.reconfigure(encoding="utf-8")
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--questions", type=Path, default=Path("eval/sample_dev.json"))
     p.add_argument("--limit", type=int, default=10)
-    p.add_argument("--models", nargs="+", default=["qwen3:0.6b", "qwen3:4b"])
+    p.add_argument("--models", nargs="+", default=["qwen3:0.6b", "qwen3:4b-instruct"])
     p.add_argument("--configs", nargs="+", choices=CONFIGS, default=list(CONFIGS))
     p.add_argument("--backend", default=None)
     p.add_argument("-k", type=int, default=5)

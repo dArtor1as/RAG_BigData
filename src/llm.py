@@ -1,7 +1,9 @@
 """Єдина точка виклику LLM для генерації, HyDE і LLM-судді.
 
 Бекенди:
-- "ollama" — локальні моделі (qwen3:4b, qwen3:0.6b, qwen3:8b), працює без інтернету;
+- "ollama" — локальні моделі (qwen3:4b-instruct, qwen3:0.6b), працює без інтернету.
+  Тег qwen3:4b в Ollama — це Qwen3-4B-Thinking-2507, яка міркує завжди і ігнорує think=False,
+  тому для RAG беремо instruct-версію тієї ж моделі;
 - "gemini" — Google Gemini API, ключ береться зі змінної середовища GEMINI_API_KEY.
 
 Бекенд і модель за замовчуванням задаються змінними RAG_BACKEND і RAG_LLM.
@@ -11,9 +13,8 @@ import re
 from functools import lru_cache
 
 BACKENDS = ("ollama", "gemini")
-DEFAULT_MODELS = {"ollama": "qwen3:4b", "gemini": "gemini-2.5-flash"}
-# Контекст Ollama задаємо явно: 5 анотацій + інструкція ≈ 2 тис. токенів,
-# а дефолтне вікно в старших версіях Ollama — лише 2048.
+DEFAULT_MODELS = {"ollama": "qwen3:4b-instruct", "gemini": "gemini-2.5-flash"}
+# 5 анотацій + інструкція ≈ 1–2 тис. токенів, тож 4096 вистачає з запасом.
 OLLAMA_NUM_CTX = 4096
 
 _THINK = re.compile(r"<think>.*?</think>", re.DOTALL)
@@ -68,5 +69,5 @@ def generate(prompt: str, system: str | None = None, model: str | None = None,
         response = _gemini_client().models.generate_content(model=model, contents=prompt, config=config)
         text = response.text or ""
 
-    # Деякі збірки qwen3 все одно повертають порожній <think></think> — прибираємо.
+    # qwen3 інколи лишає порожній <think></think> навіть з think=False.
     return _THINK.sub("", text).strip()

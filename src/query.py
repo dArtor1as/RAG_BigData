@@ -1,12 +1,12 @@
-"""Покращення пошуку на рівні запиту: HyDE, reranker і поріг відмови.
+"""Покращення пошуку на рівні запиту: HyDE, reranker і дворівневий поріг відмови.
 
 Кожне покращення вмикається прапорцем, щоб можна було виміряти його внесок окремо.
 
-Калібрування порогу відмови:
-    python -m src.query --calibrate --inside eval/sample_dev.json --outside eval/sample_offtopic.json
+Калібрування порогів (вибірка і повний корпус відповідно):
+    python -m src.query --calibrate
+    python -m src.query --calibrate --inside eval/sample_dev.json eval/dev_full.json
 """
 import argparse
-import sys
 import json
 from functools import lru_cache
 from pathlib import Path
@@ -19,10 +19,12 @@ from .retriever import get_retriever
 
 RERANKER = "cross-encoder/ms-marco-MiniLM-L-6-v2"
 RERANK_CANDIDATES = 50
-# Пороги за замовчуванням, поки немає калібрування (файл thresholds.json у папці RAG_WORK).
-# "dense" — косинус між питанням і найкращою анотацією, "rerank" — оцінка cross-encoder.
-# Шкали різні, тому і пороги окремі.
-DEFAULT_THRESHOLDS = {"dense": 0.60, "rerank": 0.0}
+# Пороги за косинусом питання з найкращою анотацією, якщо немає thresholds.json у RAG_WORK:
+# нижче low — відмова без LLM, між low і high — відповідь із попередженням.
+# Оцінка cross-encoder для цього не годиться: для правильної статті вона буває −9…−10.
+DEFAULT_THRESHOLDS = {"low": 0.60, "high": 0.70}
+LOW_MARGIN = 0.03  # запас нижнього порогу під найслабшим питанням з корпусу
+HIGH_PERCENTILE = 95  # верхній поріг: вище нього лише 5% питань поза корпусом
 
 HYDE_SYSTEM = ("You write abstracts of computer science research papers. "
                "Reply with the abstract text only, in English, 4-6 sentences, no title.")
@@ -38,6 +40,13 @@ def hyde_passage(query: str, model: str | None = None, backend: str | None = Non
     """
     return generate(HYDE_PROMPT.format(query=query), system=HYDE_SYSTEM, model=model,
                     backend=backend, temperature=0.7, max_tokens=256)
+
+
+def hyde_vector(q_vec: np.ndarray, p_vec: np.ndarray) -> np.ndarray:
+    """Як у статті HyDE, усереднюємо вектор гіпотетичного документа з вектором питання:
+    якщо LLM пішла не в той бік, питання утримує пошук біля теми."""
+    vec = q_vec + p_vec
+    return (vec / np.linalg.norm(vec, axis=1, keepdims=True)).astype(np.float32)
 
 
 @lru_cache(maxsize=1)
@@ -63,7 +72,7 @@ def retrieve(query: str, k: int = 5, hyde: bool = False, use_rerank: bool = Fals
              model: str | None = None, backend: str | None = None, timings: Timings | None = None):
     """Повертає (hits, info).
 
-    info: mode ("dense" або "rerank"), relevance (число для порогу відмови),
+    info: relevance (косинус питання з найкращою анотацією, для порогу відмови),
     hyde_passage (текст гіпотетичної анотації або None).
     """
     timings = timings if timings is not None else Timings()
@@ -76,35 +85,28 @@ def retrieve(query: str, k: int = 5, hyde: bool = False, use_rerank: bool = Fals
         with timings.stage("hyde"):
             passage = hyde_passage(query, model=model, backend=backend)
         with timings.stage("encode"):
-            p_vec = retriever.encode([passage], "passage")
-            # Як у статті HyDE, усереднюємо вектор гіпотетичного документа з вектором питання:
-            # якщо LLM пішла не в той бік, питання утримує пошук біля теми.
-            vec = q_vec + p_vec
-            vec = (vec / np.linalg.norm(vec, axis=1, keepdims=True)).astype(np.float32)
+            vec = hyde_vector(q_vec, retriever.encode([passage], "passage"))
     else:
         vec = q_vec
 
     with timings.stage("search"):
         hits = retriever.search_vector(vec, RERANK_CANDIDATES if use_rerank else k)
 
+    if not hits:
+        relevance = float("-inf")
+    elif hyde:
+        # Поріг калібрувався на схожості самого питання, а при HyDE score рахується для
+        # гібридного вектора. Тому окремо шукаємо найкращу анотацію для питання (~20 мс).
+        with timings.stage("search"):
+            relevance = retriever.search_vector(q_vec, 1)[0]["score"]
+    else:
+        relevance = hits[0]["score"]
+
     if use_rerank:
         with timings.stage("rerank"):
             hits = rerank(query, hits, k)
-        relevance = hits[0]["rerank_score"] if hits else float("-inf")
-        mode = "rerank"
-    else:
-        mode = "dense"
-        if not hits:
-            relevance = float("-inf")
-        elif hyde:
-            # score при HyDE — схожість із гібридним вектором; для порогу рахуємо
-            # схожість саме питання з найкращою анотацією, щоб поріг був один.
-            with timings.stage("encode"):
-                relevance = float(q_vec[0] @ retriever.encode([hits[0]["text"]], "passage")[0])
-        else:
-            relevance = hits[0]["score"]
 
-    return hits, {"mode": mode, "relevance": float(relevance), "hyde_passage": passage}
+    return hits, {"relevance": float(relevance), "hyde_passage": passage}
 
 
 def thresholds_path() -> Path:
@@ -114,51 +116,45 @@ def thresholds_path() -> Path:
 def load_thresholds() -> dict:
     path = thresholds_path()
     if path.is_file():
-        return {**DEFAULT_THRESHOLDS, **json.loads(path.read_text(encoding="utf-8"))["thresholds"]}
+        data = json.loads(path.read_text(encoding="utf-8"))
+        return {"low": data["low"], "high": data["high"]}
     return dict(DEFAULT_THRESHOLDS)
 
 
-def is_out_of_corpus(info: dict, thresholds: dict | None = None) -> bool:
-    """Відмова: найкраща знайдена анотація недостатньо схожа на питання."""
-    thresholds = thresholds or load_thresholds()
-    return info["relevance"] < thresholds[info["mode"]]
+def confidence(relevance: float, thresholds: dict | None = None) -> str:
+    """"low" — відмова, "uncertain" — відповідь із попередженням, "high" — звичайна відповідь."""
+    t = thresholds or load_thresholds()
+    if relevance < t["low"]:
+        return "low"
+    return "uncertain" if relevance < t["high"] else "high"
 
 
-def best_threshold(inside: list[float], outside: list[float]) -> tuple[float, float]:
-    """Поріг, що найкраще розділяє питання «в корпусі» і «поза корпусом» (balanced accuracy)."""
-    values = sorted(set(inside) | set(outside))
-    candidates = [(a + b) / 2 for a, b in zip(values, values[1:])] or values
-    best = (float("-inf"), 0.0)
-    for t in candidates:
-        tpr = sum(v >= t for v in inside) / len(inside)
-        tnr = sum(v < t for v in outside) / len(outside)
-        score = (tpr + tnr) / 2
-        # За рівної точності беремо менший поріг: краще відповісти, ніж зайво відмовити.
-        if score > best[1] + 1e-9:
-            best = (t, score)
-    return best
+def _questions(path) -> list[str]:
+    data = json.loads(Path(path).read_text(encoding="utf-8"))
+    return [item["question"] if isinstance(item, dict) else item for item in data]
 
 
-def calibrate(inside_file: Path, outside_file: Path, write: bool = True) -> dict:
-    def load(path):
-        data = json.loads(Path(path).read_text(encoding="utf-8"))
-        return [item["question"] if isinstance(item, dict) else item for item in data]
-
-    inside, outside = load(inside_file), load(outside_file)
-    report = {"inside_file": str(inside_file), "outside_file": str(outside_file),
-              "inside": len(inside), "outside": len(outside), "thresholds": {}, "balanced_accuracy": {},
-              "relevance": {}}
-    for mode, use_rerank in (("dense", False), ("rerank", True)):
-        rel_in = [retrieve(q, k=5, use_rerank=use_rerank)[1]["relevance"] for q in inside]
-        rel_out = [retrieve(q, k=5, use_rerank=use_rerank)[1]["relevance"] for q in outside]
-        threshold, accuracy = best_threshold(rel_in, rel_out)
-        report["thresholds"][mode] = round(threshold, 4)
-        report["balanced_accuracy"][mode] = round(accuracy, 4)
-        report["relevance"][mode] = {"inside": [round(v, 4) for v in rel_in],
-                                     "outside": [round(v, 4) for v in rel_out]}
-        print(f"{mode:6}: в корпусі min={min(rel_in):.3f} median={np.median(rel_in):.3f} | "
-              f"поза корпусом max={max(rel_out):.3f} median={np.median(rel_out):.3f} | "
-              f"поріг={threshold:.3f}, balanced accuracy={accuracy:.2%}")
+def calibrate(inside_files: list[Path], outside_file: Path, write: bool = True) -> dict:
+    """Нижній поріг не відкидає жодного питання з корпусу (із запасом LOW_MARGIN),
+    верхній відсікає HIGH_PERCENTILE% питань поза корпусом."""
+    inside = [q for f in inside_files for q in _questions(f)]
+    outside = _questions(outside_file)
+    rel_in = np.array([retrieve(q, k=1)[1]["relevance"] for q in inside])
+    rel_out = np.array([retrieve(q, k=1)[1]["relevance"] for q in outside])
+    low = round(float(rel_in.min()) - LOW_MARGIN, 3)
+    high = round(max(float(np.percentile(rel_out, HIGH_PERCENTILE)), low), 3)
+    zones = {name: {"refused": float(np.mean(v < low)), "uncertain": float(np.mean((v >= low) & (v < high))),
+                    "confident": float(np.mean(v >= high))} for name, v in (("inside", rel_in), ("outside", rel_out))}
+    report = {"low": low, "high": high, "zones": zones,
+              "inside_files": [str(f) for f in inside_files], "outside_file": str(outside_file),
+              "relevance_inside": [round(float(v), 4) for v in rel_in],
+              "relevance_outside": [round(float(v), 4) for v in rel_out]}
+    print(f"в корпусі ({len(inside)}): min={rel_in.min():.3f} median={np.median(rel_in):.3f} | "
+          f"поза корпусом ({len(outside)}): max={rel_out.max():.3f} median={np.median(rel_out):.3f}")
+    print(f"пороги: low={low:.3f}, high={high:.3f}")
+    for name, label in (("inside", "в корпусі"), ("outside", "поза корпусом")):
+        z = zones[name]
+        print(f"  {label:14} відмова {z['refused']:.0%} | попередження {z['uncertain']:.0%} | впевнено {z['confident']:.0%}")
     if write:
         thresholds_path().write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         print(f"Збережено: {thresholds_path()}")
@@ -166,14 +162,10 @@ def calibrate(inside_file: Path, outside_file: Path, write: bool = True) -> dict
 
 
 def main():
-    # Консоль Windows за замовчуванням не UTF-8 — без цього українські літери ламаються.
-    for stream in (sys.stdout, sys.stderr):
-        if hasattr(stream, "reconfigure"):
-            stream.reconfigure(encoding="utf-8")
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument("--calibrate", action="store_true", help="підібрати поріг відмови")
-    p.add_argument("--inside", type=Path, default=Path("eval/sample_dev.json"))
-    p.add_argument("--outside", type=Path, default=Path("eval/sample_offtopic.json"))
+    p.add_argument("--calibrate", action="store_true", help="підібрати пороги відмови")
+    p.add_argument("--inside", type=Path, nargs="+", default=[Path("eval/sample_dev.json")])
+    p.add_argument("--outside", type=Path, default=Path("eval/offtopic.json"))
     p.add_argument("--dry-run", action="store_true", help="не записувати thresholds.json")
     args = p.parse_args()
     if not args.calibrate:

@@ -1,0 +1,402 @@
+[
+ {
+  "question": "How do Student's t distribution-based Kalman smoothers improve robustness in noisy time series data?",
+  "arxiv_id": "1303.5588"
+ },
+ {
+  "question": "How can online systems efficiently track and prioritize service requests for SLA compliance?",
+  "arxiv_id": "1407.0697"
+ },
+ {
+  "question": "How can formal models enable automated checklist generation for complex distributed systems?",
+  "arxiv_id": "1410.1729"
+ },
+ {
+  "question": "How can fractal splines be used for general univariate constrained interpolation?",
+  "arxiv_id": "1503.08116"
+ },
+ {
+  "question": "How can 4- and 5-node graphlets be efficiently sampled and counted in large networks?",
+  "arxiv_id": "1509.08089"
+ },
+ {
+  "question": "How to efficiently compute near-optimal routes with nonlinear, non-monotonic objectives?",
+  "arxiv_id": "1511.07412"
+ },
+ {
+  "question": "How do external sources drive traffic to academic articles on PeerJ?",
+  "arxiv_id": "1601.05271"
+ },
+ {
+  "question": "Is cybersecurity dynamics globally stable across all parameter regimes?",
+  "arxiv_id": "1602.06807"
+ },
+ {
+  "question": "What is the exponential error bound for asymmetric broadcast channels outside the capacity region?",
+  "arxiv_id": "1604.02901"
+ },
+ {
+  "question": "How can swarm particle motion be controlled using global signals and statistical metrics?",
+  "arxiv_id": "1706.02162"
+ },
+ {
+  "question": "How can electric utilities leverage big data and machine learning for smarter asset management?",
+  "arxiv_id": "1706.09711"
+ },
+ {
+  "question": "Is ambiguity in derivatives equivalent to Carlet-Ding's NB_F parameter?",
+  "arxiv_id": "1710.07765"
+ },
+ {
+  "question": "How can UAV trajectory and power be jointly optimized for secure communication in mobile relaying systems?",
+  "arxiv_id": "1803.07874"
+ },
+ {
+  "question": "How does memristive integration reduce noise in high-frequency current mirrors?",
+  "arxiv_id": "1805.06626"
+ },
+ {
+  "question": "Can autoencoders improve multi-label prostate segmentation in MRI?",
+  "arxiv_id": "1806.08216"
+ },
+ {
+  "question": "What haptic systems best support effective visuo-haptic learning in medical training?",
+  "arxiv_id": "1811.07473"
+ },
+ {
+  "question": "How can multi-object tracking improve association accuracy using short and long-term cues?",
+  "arxiv_id": "1901.06129"
+ },
+ {
+  "question": "How can coded distributed computing be optimized for heterogeneous networks with varying function assignments?",
+  "arxiv_id": "1902.10738"
+ },
+ {
+  "question": "How do adults and minors differ in their experience of VR locomotion modalities?",
+  "arxiv_id": "1904.08009"
+ },
+ {
+  "question": "Can pulse pressure waves accurately detect pregnancy using machine learning?",
+  "arxiv_id": "1910.01726"
+ },
+ {
+  "question": "How can mask-based lensless cameras accurately estimate depth in scenes with large depth variations?",
+  "arxiv_id": "1910.02526"
+ },
+ {
+  "question": "How do swap structures enable first-order semantics for logics of formal inconsistency?",
+  "arxiv_id": "1912.10277"
+ },
+ {
+  "question": "How can multiple surface vessels coordinate motion without direct communication?",
+  "arxiv_id": "2007.10577"
+ },
+ {
+  "question": "How can causal models improve pseudo-mask generation in weakly supervised segmentation?",
+  "arxiv_id": "2009.12547"
+ },
+ {
+  "question": "How do video, audio, and speech combine to predict movie trailer age suitability using deep learning?",
+  "arxiv_id": "2101.11704"
+ },
+ {
+  "question": "How can uncertainty in Hawkes process decay parameters be effectively quantified and managed?",
+  "arxiv_id": "2104.01029"
+ },
+ {
+  "question": "How does operator shifting improve inverse matrix estimation in noisy, nonsymmetric systems?",
+  "arxiv_id": "2104.11294"
+ },
+ {
+  "question": "Can a coded caching scheme for multiaccess combination networks reduce subpacketization without combinatorial constraints?",
+  "arxiv_id": "2108.09612"
+ },
+ {
+  "question": "How does Minimum Message Length compare to AIC, BIC, and HQ in ARMA model selection?",
+  "arxiv_id": "2110.03250"
+ },
+ {
+  "question": "Can subword-dependent model scales be automatically learned and improve speech recognition performance?",
+  "arxiv_id": "2110.09324"
+ },
+ {
+  "question": "Can graph-theoretic machine learning predict human driver behavior from vehicle trajectories?",
+  "arxiv_id": "2111.02964"
+ },
+ {
+  "question": "How do spiking neuron models on Loihi 2 enable efficient signal processing with reduced computational overhead?",
+  "arxiv_id": "2111.03746"
+ },
+ {
+  "question": "How can federated learning reduce communication costs in fully decentralized networks?",
+  "arxiv_id": "2202.02580"
+ },
+ {
+  "question": "How can autonomous vehicles safely adapt to sudden changes in environmental perception during navigation?",
+  "arxiv_id": "2204.06509"
+ },
+ {
+  "question": "Can deep neural networks solve novel tasks without prior training by recognizing sequence patterns?",
+  "arxiv_id": "2205.12013"
+ },
+ {
+  "question": "Can computer vision accurately detect bile duct dilatation in MRI images?",
+  "arxiv_id": "2209.04646"
+ },
+ {
+  "question": "Under what conditions does the Method of Successive Approximations converge in optimal control?",
+  "arxiv_id": "2209.10046"
+ },
+ {
+  "question": "How can neural networks be made projectively equivariant?",
+  "arxiv_id": "2209.14719"
+ },
+ {
+  "question": "How can causal relationships improve chatbot handoff decisions and reduce labor costs?",
+  "arxiv_id": "2210.02862"
+ },
+ {
+  "question": "How can integrated access and backhaul improve mmWave cell-free massive MIMO system performance?",
+  "arxiv_id": "2210.12633"
+ },
+ {
+  "question": "How can internal representations enhance adversarial robustness in machine learning models?",
+  "arxiv_id": "2211.00239"
+ },
+ {
+  "question": "How can chunk-wise Conformers improve streaming ASR with better context and efficient computation?",
+  "arxiv_id": "2211.11419"
+ },
+ {
+  "question": "How can graph neural networks improve related product recommendations in e-commerce?",
+  "arxiv_id": "2211.11583"
+ },
+ {
+  "question": "How can robust risk minimization handle heavy-tailed losses without variance estimation?",
+  "arxiv_id": "2301.11584"
+ },
+ {
+  "question": "How can port-Hamiltonian systems be efficiently discretized using finite element hybridization?",
+  "arxiv_id": "2302.06239"
+ },
+ {
+  "question": "Are there publicly available datasets for underwater forward-looking stereo and visual-inertial sensing with ground truth?",
+  "arxiv_id": "2302.12772"
+ },
+ {
+  "question": "How do equiangular basis vectors improve classification in deep neural networks?",
+  "arxiv_id": "2303.11637"
+ },
+ {
+  "question": "How does translate-and-test transfer learning improve cross-lingual text classification?",
+  "arxiv_id": "2306.04996"
+ },
+ {
+  "question": "How can dialogue models generalize to unseen attribute combinations in multi-attribute control?",
+  "arxiv_id": "2306.10317"
+ },
+ {
+  "question": "How can cross-lingual debunked narrative retrieval be improved for fact-checking?",
+  "arxiv_id": "2308.05680"
+ },
+ {
+  "question": "How can clustered multi-task compressive sensing be made faster and more scalable?",
+  "arxiv_id": "2310.00420"
+ },
+ {
+  "question": "Is Euclidean Bottleneck Steiner Tree solvable in fixed-parameter tractable time?",
+  "arxiv_id": "2312.01589"
+ },
+ {
+  "question": "How can graph clustering be improved for non-spherical data and arbitrary cluster shapes?",
+  "arxiv_id": "2312.04067"
+ },
+ {
+  "question": "How can we predict future structures of evolving graphs with new nodes and edges?",
+  "arxiv_id": "2401.04280"
+ },
+ {
+  "question": "What is the approximation ratio for maximum independent set of convex polygons with bounded edge directions?",
+  "arxiv_id": "2402.07666"
+ },
+ {
+  "question": "How can multi-view hair capture achieve strand-level precision without external priors?",
+  "arxiv_id": "2409.00831"
+ },
+ {
+  "question": "How can Java developers use a simple and secure encryption API to avoid common cryptographic mistakes?",
+  "arxiv_id": "2409.05128"
+ },
+ {
+  "question": "How can fluid-poroelastic structure interaction be efficiently solved in parallel without time-step restrictions?",
+  "arxiv_id": "2409.15618"
+ },
+ {
+  "question": "How can Gaussian processes achieve accurate uncertainty quantification at scale?",
+  "arxiv_id": "2410.08796"
+ },
+ {
+  "question": "How can psychological games be verified in multi-agent systems using formal methods?",
+  "arxiv_id": "2411.05599"
+ },
+ {
+  "question": "How does Foxtsage compare to Adam in neural network optimization performance and efficiency?",
+  "arxiv_id": "2412.17855"
+ },
+ {
+  "question": "How does permutation-based multi-objective evolutionary feature selection improve high-dimensional data analysis?",
+  "arxiv_id": "2501.14310"
+ },
+ {
+  "question": "How do temporal attention patterns improve KV cache compression in LLMs?",
+  "arxiv_id": "2502.04077"
+ },
+ {
+  "question": "How can deep learning improve unknown small molecule structure annotation from mass spectra?",
+  "arxiv_id": "2502.05114"
+ },
+ {
+  "question": "What privacy risks arise when merging unaudited large language models?",
+  "arxiv_id": "2502.11533"
+ },
+ {
+  "question": "How can KV cache be compressed without losing context or retraining in long-context LLMs?",
+  "arxiv_id": "2503.10714"
+ },
+ {
+  "question": "Can Transformer-based receivers achieve accurate symbol detection with minimal pilot data using decision feedback in-context learning?",
+  "arxiv_id": "2503.16594"
+ },
+ {
+  "question": "How can physical vehicle characteristics improve CAN intrusion detection in resource-constrained environments?",
+  "arxiv_id": "2503.17067"
+ },
+ {
+  "question": "How can a tiny bipedal robot achieve stable walking without feedback control or advanced actuators?",
+  "arxiv_id": "2505.05686"
+ },
+ {
+  "question": "How can we improve regret metrics for multi-objective bandit problems with conflicting goals?",
+  "arxiv_id": "2506.13125"
+ },
+ {
+  "question": "How can a single satellite image be used to generate detailed 3D city models?",
+  "arxiv_id": "2507.04403"
+ },
+ {
+  "question": "How can BERT-based NLP automate attack sequence extraction from unstructured threat reports?",
+  "arxiv_id": "2507.07244"
+ },
+ {
+  "question": "How do training strategies affect Vision Transformers' alignment with human visual perception?",
+  "arxiv_id": "2508.09850"
+ },
+ {
+  "question": "How can discrete min-max violation optimization improve real-world computational tasks?",
+  "arxiv_id": "2508.13437"
+ },
+ {
+  "question": "How can Unicode be used to hide authorship in public messages?",
+  "arxiv_id": "2508.15840"
+ },
+ {
+  "question": "How does a first-order state space model enhance lightweight image super-resolution without extra parameters?",
+  "arxiv_id": "2509.08458"
+ },
+ {
+  "question": "How do large language models strategically lie, and can current safety tools detect such deception?",
+  "arxiv_id": "2509.20393"
+ },
+ {
+  "question": "How can models balance reasoning length based on problem difficulty to improve accuracy and efficiency?",
+  "arxiv_id": "2510.01581"
+ },
+ {
+  "question": "Can MinRank be used to build a practical, secure encryption scheme with search-to-decision reductions?",
+  "arxiv_id": "2510.07584"
+ },
+ {
+  "question": "How can reinforcement learning reduce imbalance costs in real-time PV trading across different electricity markets?",
+  "arxiv_id": "2510.16021"
+ },
+ {
+  "question": "How does autonomous ROM and controller adaptation improve real-time control of high-dimensional nonlinear systems?",
+  "arxiv_id": "2511.07768"
+ },
+ {
+  "question": "How can world models be decomposed into modular components for efficient and interpretable AI inference?",
+  "arxiv_id": "2512.02193"
+ },
+ {
+  "question": "How can AI and expert-defined features be combined to discover reliable digital biomarkers from ECG signals?",
+  "arxiv_id": "2601.15326"
+ },
+ {
+  "question": "How can optimal transport improve gradual domain adaptation without relying on sample-based likelihood estimation?",
+  "arxiv_id": "2602.01179"
+ },
+ {
+  "question": "How do users emotionally experience and manage psychological risks when using AI chatbots?",
+  "arxiv_id": "2602.09339"
+ },
+ {
+  "question": "How can sensitive data be protected in mobile GUI agents without compromising task usability?",
+  "arxiv_id": "2602.10139"
+ },
+ {
+  "question": "Can facial video accurately estimate heart rate and SpO2 in neonates without skin contact?",
+  "arxiv_id": "2602.23771"
+ },
+ {
+  "question": "Can agentic AI improve coverage closure in formal verification of integrated circuits?",
+  "arxiv_id": "2603.03147"
+ },
+ {
+  "question": "How can machine learning models reveal physical insights in crystal energy landscapes?",
+  "arxiv_id": "2604.04636"
+ },
+ {
+  "question": "Are there polynomial or pseudopolynomial algorithms for specific bin packing classes challenging existing exact methods?",
+  "arxiv_id": "2604.05152"
+ },
+ {
+  "question": "How can preference models be calibrated for label ranking tasks?",
+  "arxiv_id": "2605.30447"
+ },
+ {
+  "question": "How can small language models efficiently ground skills in embodied robotic agents without relying on large language models?",
+  "arxiv_id": "2606.07999"
+ },
+ {
+  "question": "How can adversarial driving scenarios be generated to target specific policy failures in autonomous vehicles?",
+  "arxiv_id": "2606.17482"
+ },
+ {
+  "question": "How can medical multimodal models be made more trustworthy through verifiable anatomical evidence?",
+  "arxiv_id": "2607.00060"
+ },
+ {
+  "question": "How can implicit input actions in software tutorials be made visible and actionable for learners?",
+  "arxiv_id": "2608.04910"
+ },
+ {
+  "question": "How can High-Bandwidth Flash enhance large language model serving under memory constraints?",
+  "arxiv_id": "2608.13127"
+ },
+ {
+  "question": "How can AI data centers optimize workload shifting under power grid constraints?",
+  "arxiv_id": "2609.09787"
+ },
+ {
+  "question": "How can reinforcement learning adapt planning horizons without altering Bellman updates?",
+  "arxiv_id": "2610.21764"
+ },
+ {
+  "question": "How do multi-view latent action models improve robot learning from videos in cross-embodiment scenarios?",
+  "arxiv_id": "2610.27794"
+ },
+ {
+  "question": "Can AI-guided self-reflection enhance group debate quality, especially in conflicting groups?",
+  "arxiv_id": "2610.37862"
+ }
+]

@@ -13,11 +13,11 @@ import streamlit as st
 # Streamlit запускає файл як скрипт, тому корінь репозиторію додаємо в шлях вручну.
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from src.citations import STATUS_LABELS  # noqa: E402
-from src.generator import answer  # noqa: E402
-from src.llm import DEFAULT_MODELS  # noqa: E402
-from src.query import load_thresholds  # noqa: E402
-from src.retriever import get_retriever  # noqa: E402
+from src.citations import STATUS_LABELS
+from src.generator import answer
+from src.llm import DEFAULT_MODELS
+from src.query import load_thresholds
+from src.retriever import get_retriever
 
 st.set_page_config(page_title="arXiv RAG", page_icon="🔎", layout="wide")
 
@@ -38,8 +38,9 @@ def highlighted(claims: list[dict]) -> str:
         else:
             sim = f", схожість {c['similarity']:.2f}" if c["similarity"] is not None else ""
             tip = html.escape(STATUS_LABELS[c["status"]] + sim)
-            parts.append(f'<mark title="{tip}" style="background:#ffe08a;color:inherit;'
-                         f'border-radius:3px;padding:0 2px">{text}</mark>')
+            # Напівпрозоре тло і колір тексту теми: читається і в світлій, і в темній темі.
+            parts.append(f'<span title="{tip}" style="background:rgba(255,170,0,0.18);'
+                         f'border-bottom:2px dotted #e8a000;padding:0 2px">{text}</span>')
     return " ".join(parts)
 
 
@@ -48,18 +49,18 @@ papers, encoder, index_kind = warm_up()
 with st.sidebar:
     st.header("Налаштування")
     backend = st.radio("Бекенд LLM", ["ollama", "gemini"], horizontal=True)
-    models = ["qwen3:4b", "qwen3:0.6b"] if backend == "ollama" else [DEFAULT_MODELS["gemini"], "gemini-2.5-flash-lite"]
+    models = ["qwen3:4b-instruct", "qwen3:0.6b"] if backend == "ollama" else [DEFAULT_MODELS["gemini"], "gemini-2.5-flash-lite"]
     model = st.selectbox("Модель", models)
     k = st.slider("Кількість джерел k", 1, 10, 5)
     use_rag = st.toggle("RAG (пошук у корпусі)", value=True)
     hyde = st.toggle("HyDE", value=False, disabled=not use_rag)
     rerank = st.toggle("Reranker (cross-encoder)", value=False, disabled=not use_rag)
-    refuse = st.toggle("Поріг відмови", value=True, disabled=not use_rag)
-    thresholds = load_thresholds()
-    mode = "rerank" if rerank else "dense"
-    threshold = st.number_input(f"Поріг ({'cross-encoder' if rerank else 'косинус'})",
-                                value=float(thresholds[mode]), step=0.01, format="%.3f",
-                                disabled=not (use_rag and refuse))
+    refuse = st.toggle("Відмова за порогом", value=True, disabled=not use_rag)
+    defaults = load_thresholds()
+    low = st.number_input("Нижче — відмова (косинус)", value=float(defaults["low"]), step=0.01, format="%.3f",
+                          disabled=not use_rag)
+    high = st.number_input("Нижче — попередження (косинус)", value=float(defaults["high"]), step=0.01,
+                           format="%.3f", disabled=not use_rag)
     st.caption(f"Корпус: {papers:,} статей · енкодер {encoder} · індекс {index_kind}".replace(",", " "))
 
 st.title("Пошук по анотаціях arXiv")
@@ -69,7 +70,7 @@ if st.button("Запитати", type="primary", disabled=not query.strip()):
     with st.spinner("Шукаю і генерую відповідь…"):
         try:
             result = answer(query, k=k, model=model, use_rag=use_rag, hyde=hyde, rerank=rerank,
-                            backend=backend, refuse=refuse, thresholds={**thresholds, mode: threshold})
+                            backend=backend, refuse=refuse, thresholds={"low": low, "high": high})
         except Exception as error:  # показуємо помилку в інтерфейсі замість падіння сторінки
             st.error(f"{type(error).__name__}: {error}")
             st.stop()
@@ -77,23 +78,35 @@ if st.button("Запитати", type="primary", disabled=not query.strip()):
     if result["refused"]:
         st.warning(result["answer"])
         if result["refusal_reason"] == "low_score":
-            st.caption(f"Релевантність найкращої анотації {result['relevance']:.3f} нижча за поріг {threshold:.3f}.")
+            st.caption(f"Релевантність найкращої анотації {result['relevance']:.3f} нижча за поріг {low:.3f}.")
         else:
             st.caption("Модель не знайшла відповіді в знайдених анотаціях.")
-    elif result["claims"]:
-        st.markdown(highlighted(result["claims"]), unsafe_allow_html=True)
-        ratio = result["supported_ratio"]
-        if ratio is not None:
-            st.caption(f"Підтверджено джерелами: {ratio:.0%} речень. Жовтим — непідтверджені (наведіть курсор).")
     else:
-        st.markdown(result["answer"])
+        if result["confidence"] == "uncertain":
+            st.warning(f"Знайдені статті лише частково схожі на питання (релевантність {result['relevance']:.3f}). "
+                       "Відповідь може спиратися на дотичні роботи — перевірте джерела.")
+        st.subheader("Відповідь")
+        with st.container(border=True):
+            if result["claims"]:
+                st.markdown(highlighted(result["claims"]), unsafe_allow_html=True)
+            else:
+                st.markdown(result["answer"])
+        unsupported = [c for c in result["claims"] if c["status"] not in ("ok", "short")]
+        if result["supported_ratio"] is not None:
+            st.caption(f"Підтверджено джерелами: {result['supported_ratio']:.0%} речень. "
+                       "Підкреслені пунктиром речення не підтверджені.")
+        if unsupported:
+            with st.expander(f"Непідтверджені речення ({len(unsupported)})"):
+                for c in unsupported:
+                    sim = f" (схожість {c['similarity']:.2f})" if c["similarity"] is not None else ""
+                    st.markdown(f"- **{STATUS_LABELS[c['status']]}**{sim}: {c['sentence']}")
 
     timings = result["timings"]
     st.caption("Час, с: " + " · ".join(f"{name} {sec:.2f}" for name, sec in timings.items())
                + f" · разом {sum(timings.values()):.2f}")
 
     if result["hyde_passage"]:
-        with st.expander("Гіпотетична анотація (HyDE)"):
+        with st.expander("Гіпотетична анотація (HyDE): вигадана LLM лише для пошуку, це не відповідь"):
             st.write(result["hyde_passage"])
 
     if result["sources"]:

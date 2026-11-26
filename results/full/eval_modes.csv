@@ -1,0 +1,119 @@
+source,question,arxiv_id,relevance,base,rerank,hyde,hyde_rerank
+sample_dev.json,"Could a digital library suggest related preprints from what readers open, before those papers have accumulated citations?",0704.2963,0.7446,,,,
+sample_dev.json,How can neighboring motes share the cost of sending a message so that the one with the weakest battery stays online longer?,0704.3396,0.6957,,,16,15
+sample_dev.json,Which work adapts an existing open-source recognizer to transcribe continuous speech from Arabic speakers?,0704.2083,0.8077,3,2,4,2
+sample_dev.json,How should vertices be laid out in memory so an update over a computational mesh runs efficiently on machines with different cache sizes?,0705.1033,0.8496,1,1,1,1
+sample_dev.json,A hiker needs a near-shortest route over a triangulated landscape and can never climb. Which algorithm handles that constraint?,0705.1364,0.7669,2,3,1,3
+sample_dev.json,How could an ad platform learn the click potential of a newcomer while keeping the usual sponsored placement auction mostly intact?,0707.1053,0.7843,29,2,8,2
+sample_dev.json,"If only a few symbols from a large alphabet have appeared, how can one estimate the chance of the entire observed string consistently?",0704.1455,0.7845,2,2,1,2
+sample_dev.json,Which compression scheme begins decoding from the least significant digits of an integer and can reproduce familiar prefix codes?,0704.0834,0.804,18,1,26,1
+sample_dev.json,Which study diagnoses damage in cylindrical shells from oscillation measurements using a combination of fuzzy rules and learning?,0705.2236,0.7866,1,2,1,1
+sample_dev.json,Is there a way to avoid repeatedly choosing the same variables while training a support vector machine in small subproblems?,0706.0585,0.7894,,,,
+sample_dev.json,What happens to the set of valid vertex color assignments when more edges are added to a sparse random network?,0704.1269,0.8268,36,1,1,1
+sample_dev.json,Which simulation lets groups of neural-network traders evolve their structure while deciding whether to buy or sell stocks?,0705.1757,0.8213,1,1,2,1
+sample_dev.json,How can discontinuities be distinguished from measurement noise when the available information is a truncated spectrum?,0704.3822,0.7548,28,3,8,3
+sample_dev.json,Which paper determines the computational complexity of finding a stable pair of strategies when two players each have a payoff matrix?,0704.1678,0.7796,1,37,1,30
+sample_dev.json,How can the force and motion equations be obtained explicitly for the translating platform of a three-degree-of-freedom parallel robot?,0707.2185,0.8174,4,3,5,3
+sample_dev.json,Which approach places sensors on a rotorcraft's composite component and uses their responses to locate structural damage?,0705.4654,0.76,1,1,1,1
+sample_dev.json,How can roots of the radial polynomials used for a circular optical pupil be computed with cubic convergence?,0705.1329,0.8294,1,1,1,1
+sample_dev.json,"Is there a way to describe problem difficulty by setting aside an exceptional set of inputs, even for an undecidable problem?",0707.1364,0.7227,20,1,33,1
+dev_full.json,How do Student's t distribution-based Kalman smoothers improve robustness in noisy time series data?,1303.5588,0.9055,1,1,1,1
+dev_full.json,How can online systems efficiently track and prioritize service requests for SLA compliance?,1407.0697,0.8355,1,1,28,1
+dev_full.json,How can formal models enable automated checklist generation for complex distributed systems?,1410.1729,0.8197,1,1,1,1
+dev_full.json,How can fractal splines be used for general univariate constrained interpolation?,1503.08116,0.8974,1,1,1,1
+dev_full.json,How can 4- and 5-node graphlets be efficiently sampled and counted in large networks?,1509.08089,0.873,7,1,10,1
+dev_full.json,"How to efficiently compute near-optimal routes with nonlinear, non-monotonic objectives?",1511.07412,0.9001,1,1,1,1
+dev_full.json,How do external sources drive traffic to academic articles on PeerJ?,1601.05271,0.8091,1,1,1,1
+dev_full.json,Is cybersecurity dynamics globally stable across all parameter regimes?,1602.06807,0.8606,1,1,1,1
+dev_full.json,What is the exponential error bound for asymmetric broadcast channels outside the capacity region?,1604.02901,0.8421,1,1,1,1
+dev_full.json,How can swarm particle motion be controlled using global signals and statistical metrics?,1706.02162,0.8338,1,1,1,1
+dev_full.json,How can electric utilities leverage big data and machine learning for smarter asset management?,1706.09711,0.9013,1,1,1,1
+dev_full.json,Is ambiguity in derivatives equivalent to Carlet-Ding's NB_F parameter?,1710.07765,0.742,,,1,1
+dev_full.json,How can UAV trajectory and power be jointly optimized for secure communication in mobile relaying systems?,1803.07874,0.8906,1,1,1,1
+dev_full.json,How does memristive integration reduce noise in high-frequency current mirrors?,1805.06626,0.8955,1,1,1,1
+dev_full.json,Can autoencoders improve multi-label prostate segmentation in MRI?,1806.08216,0.9438,1,1,1,1
+dev_full.json,What haptic systems best support effective visuo-haptic learning in medical training?,1811.07473,0.8581,1,1,1,1
+dev_full.json,How can multi-object tracking improve association accuracy using short and long-term cues?,1901.06129,0.8404,8,1,10,1
+dev_full.json,How can coded distributed computing be optimized for heterogeneous networks with varying function assignments?,1902.10738,0.8849,1,1,2,1
+dev_full.json,How do adults and minors differ in their experience of VR locomotion modalities?,1904.08009,0.8656,1,1,1,1
+dev_full.json,Can pulse pressure waves accurately detect pregnancy using machine learning?,1910.01726,0.883,1,1,1,1
+dev_full.json,How can mask-based lensless cameras accurately estimate depth in scenes with large depth variations?,1910.02526,0.8806,1,1,1,1
+dev_full.json,How do swap structures enable first-order semantics for logics of formal inconsistency?,1912.10277,0.8698,1,1,2,1
+dev_full.json,How can multiple surface vessels coordinate motion without direct communication?,2007.10577,0.7456,2,1,1,1
+dev_full.json,How can causal models improve pseudo-mask generation in weakly supervised segmentation?,2009.12547,0.8939,1,1,1,1
+dev_full.json,"How do video, audio, and speech combine to predict movie trailer age suitability using deep learning?",2101.11704,0.8772,1,1,1,1
+dev_full.json,How can uncertainty in Hawkes process decay parameters be effectively quantified and managed?,2104.01029,0.8179,1,1,1,1
+dev_full.json,"How does operator shifting improve inverse matrix estimation in noisy, nonsymmetric systems?",2104.11294,0.8961,1,1,1,1
+dev_full.json,Can a coded caching scheme for multiaccess combination networks reduce subpacketization without combinatorial constraints?,2108.09612,0.8982,1,3,14,3
+dev_full.json,"How does Minimum Message Length compare to AIC, BIC, and HQ in ARMA model selection?",2110.03250,0.7096,,,1,1
+dev_full.json,Can subword-dependent model scales be automatically learned and improve speech recognition performance?,2110.09324,0.913,1,1,1,1
+dev_full.json,Can graph-theoretic machine learning predict human driver behavior from vehicle trajectories?,2111.02964,0.9399,1,1,1,1
+dev_full.json,How do spiking neuron models on Loihi 2 enable efficient signal processing with reduced computational overhead?,2111.03746,0.8605,1,1,1,1
+dev_full.json,How can federated learning reduce communication costs in fully decentralized networks?,2202.02580,0.8678,,,,
+dev_full.json,How can autonomous vehicles safely adapt to sudden changes in environmental perception during navigation?,2204.06509,0.8238,3,1,4,1
+dev_full.json,Can deep neural networks solve novel tasks without prior training by recognizing sequence patterns?,2205.12013,0.8358,4,1,,
+dev_full.json,Can computer vision accurately detect bile duct dilatation in MRI images?,2209.04646,0.8762,1,1,1,1
+dev_full.json,Under what conditions does the Method of Successive Approximations converge in optimal control?,2209.10046,0.847,4,2,3,2
+dev_full.json,How can neural networks be made projectively equivariant?,2209.14719,0.9027,1,1,1,1
+dev_full.json,How can causal relationships improve chatbot handoff decisions and reduce labor costs?,2210.02862,0.8808,1,1,1,1
+dev_full.json,How can integrated access and backhaul improve mmWave cell-free massive MIMO system performance?,2210.12633,0.9171,1,1,1,1
+dev_full.json,How can internal representations enhance adversarial robustness in machine learning models?,2211.00239,0.8436,21,1,34,1
+dev_full.json,How can chunk-wise Conformers improve streaming ASR with better context and efficient computation?,2211.11419,0.863,1,1,1,1
+dev_full.json,How can graph neural networks improve related product recommendations in e-commerce?,2211.11583,0.8996,1,1,2,1
+dev_full.json,How can robust risk minimization handle heavy-tailed losses without variance estimation?,2301.11584,0.905,1,1,1,1
+dev_full.json,How can port-Hamiltonian systems be efficiently discretized using finite element hybridization?,2302.06239,0.8968,1,1,2,1
+dev_full.json,Are there publicly available datasets for underwater forward-looking stereo and visual-inertial sensing with ground truth?,2302.12772,0.8822,1,1,1,1
+dev_full.json,How do equiangular basis vectors improve classification in deep neural networks?,2303.11637,0.8753,1,1,1,1
+dev_full.json,How does translate-and-test transfer learning improve cross-lingual text classification?,2306.04996,0.9117,1,1,1,1
+dev_full.json,How can dialogue models generalize to unseen attribute combinations in multi-attribute control?,2306.10317,0.898,1,1,1,1
+dev_full.json,How can cross-lingual debunked narrative retrieval be improved for fact-checking?,2308.05680,0.9078,1,1,1,1
+dev_full.json,How can clustered multi-task compressive sensing be made faster and more scalable?,2310.00420,0.8933,1,1,1,1
+dev_full.json,Is Euclidean Bottleneck Steiner Tree solvable in fixed-parameter tractable time?,2312.01589,0.8906,1,1,1,1
+dev_full.json,How can graph clustering be improved for non-spherical data and arbitrary cluster shapes?,2312.04067,0.8282,38,5,5,4
+dev_full.json,How can we predict future structures of evolving graphs with new nodes and edges?,2401.04280,0.8691,1,2,4,2
+dev_full.json,What is the approximation ratio for maximum independent set of convex polygons with bounded edge directions?,2402.07666,0.8912,1,1,1,1
+dev_full.json,How can multi-view hair capture achieve strand-level precision without external priors?,2409.00831,0.8625,1,1,1,1
+dev_full.json,How can Java developers use a simple and secure encryption API to avoid common cryptographic mistakes?,2409.05128,0.8724,1,1,1,1
+dev_full.json,How can fluid-poroelastic structure interaction be efficiently solved in parallel without time-step restrictions?,2409.15618,0.8681,1,1,1,1
+dev_full.json,How can Gaussian processes achieve accurate uncertainty quantification at scale?,2410.08796,0.8585,18,5,13,6
+dev_full.json,How can psychological games be verified in multi-agent systems using formal methods?,2411.05599,0.8531,1,1,1,1
+dev_full.json,How does Foxtsage compare to Adam in neural network optimization performance and efficiency?,2412.17855,0.8882,1,1,1,1
+dev_full.json,How does permutation-based multi-objective evolutionary feature selection improve high-dimensional data analysis?,2501.14310,0.9262,1,1,1,1
+dev_full.json,How do temporal attention patterns improve KV cache compression in LLMs?,2502.04077,0.8722,1,1,2,1
+dev_full.json,How can deep learning improve unknown small molecule structure annotation from mass spectra?,2502.05114,0.8397,4,2,2,2
+dev_full.json,What privacy risks arise when merging unaudited large language models?,2502.11533,0.853,2,1,2,1
+dev_full.json,How can KV cache be compressed without losing context or retraining in long-context LLMs?,2503.10714,0.8925,39,5,12,5
+dev_full.json,Can Transformer-based receivers achieve accurate symbol detection with minimal pilot data using decision feedback in-context learning?,2503.16594,0.9165,1,1,1,1
+dev_full.json,How can physical vehicle characteristics improve CAN intrusion detection in resource-constrained environments?,2503.17067,0.8084,6,1,7,1
+dev_full.json,How can a tiny bipedal robot achieve stable walking without feedback control or advanced actuators?,2505.05686,0.831,1,1,1,1
+dev_full.json,How can we improve regret metrics for multi-objective bandit problems with conflicting goals?,2506.13125,0.8419,2,1,4,1
+dev_full.json,How can a single satellite image be used to generate detailed 3D city models?,2507.04403,0.8119,4,1,1,1
+dev_full.json,How can BERT-based NLP automate attack sequence extraction from unstructured threat reports?,2507.07244,0.8632,1,1,1,1
+dev_full.json,How do training strategies affect Vision Transformers' alignment with human visual perception?,2508.09850,0.8838,1,1,1,1
+dev_full.json,How can discrete min-max violation optimization improve real-world computational tasks?,2508.13437,0.8517,1,1,1,1
+dev_full.json,How can Unicode be used to hide authorship in public messages?,2508.15840,0.8208,1,1,1,1
+dev_full.json,How does a first-order state space model enhance lightweight image super-resolution without extra parameters?,2509.08458,0.8913,1,1,1,1
+dev_full.json,"How do large language models strategically lie, and can current safety tools detect such deception?",2509.20393,0.8556,38,1,36,1
+dev_full.json,How can models balance reasoning length based on problem difficulty to improve accuracy and efficiency?,2510.01581,0.8479,33,5,38,6
+dev_full.json,"Can MinRank be used to build a practical, secure encryption scheme with search-to-decision reductions?",2510.07584,0.8339,1,1,1,1
+dev_full.json,How can reinforcement learning reduce imbalance costs in real-time PV trading across different electricity markets?,2510.16021,0.8901,1,1,1,1
+dev_full.json,How does autonomous ROM and controller adaptation improve real-time control of high-dimensional nonlinear systems?,2511.07768,0.8453,1,1,1,1
+dev_full.json,How can world models be decomposed into modular components for efficient and interpretable AI inference?,2512.02193,0.849,1,1,1,1
+dev_full.json,How can AI and expert-defined features be combined to discover reliable digital biomarkers from ECG signals?,2601.15326,0.838,1,1,1,1
+dev_full.json,How can optimal transport improve gradual domain adaptation without relying on sample-based likelihood estimation?,2602.01179,0.9005,1,1,1,1
+dev_full.json,How do users emotionally experience and manage psychological risks when using AI chatbots?,2602.09339,0.8699,1,2,1,2
+dev_full.json,How can sensitive data be protected in mobile GUI agents without compromising task usability?,2602.10139,0.8586,1,1,1,1
+dev_full.json,Can facial video accurately estimate heart rate and SpO2 in neonates without skin contact?,2602.23771,0.8746,1,1,1,1
+dev_full.json,Can agentic AI improve coverage closure in formal verification of integrated circuits?,2603.03147,0.9218,1,1,1,1
+dev_full.json,How can machine learning models reveal physical insights in crystal energy landscapes?,2604.04636,0.8463,7,1,2,1
+dev_full.json,Are there polynomial or pseudopolynomial algorithms for specific bin packing classes challenging existing exact methods?,2604.05152,0.8513,2,1,1,1
+dev_full.json,How can preference models be calibrated for label ranking tasks?,2605.30447,0.8973,1,1,1,1
+dev_full.json,How can small language models efficiently ground skills in embodied robotic agents without relying on large language models?,2606.07999,0.8995,6,1,2,1
+dev_full.json,How can adversarial driving scenarios be generated to target specific policy failures in autonomous vehicles?,2606.17482,0.8876,1,1,1,1
+dev_full.json,How can medical multimodal models be made more trustworthy through verifiable anatomical evidence?,2607.00060,0.7992,,,,
+dev_full.json,How can implicit input actions in software tutorials be made visible and actionable for learners?,2608.04910,0.8033,1,1,1,1
+dev_full.json,How can High-Bandwidth Flash enhance large language model serving under memory constraints?,2608.13127,0.8546,46,4,,
+dev_full.json,How can AI data centers optimize workload shifting under power grid constraints?,2609.09787,0.8929,4,1,11,1
+dev_full.json,How can reinforcement learning adapt planning horizons without altering Bellman updates?,2610.21764,0.8342,12,1,5,1
+dev_full.json,How do multi-view latent action models improve robot learning from videos in cross-embodiment scenarios?,2610.27794,0.9198,1,1,1,1
+dev_full.json,"Can AI-guided self-reflection enhance group debate quality, especially in conflicting groups?",2610.37862,0.8999,1,1,1,1

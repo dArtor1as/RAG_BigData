@@ -66,7 +66,7 @@ class Answer(unittest.TestCase):
                         mock.patch.object(generator, "get_retriever", return_value=fake)]
         for p in self.patches:
             p.start()
-        self.thresholds = {"dense": 0.3, "rerank": 0.0}
+        self.thresholds = {"low": 0.3, "high": 0.3}
 
     def tearDown(self):
         for p in self.patches:
@@ -78,8 +78,8 @@ class Answer(unittest.TestCase):
             result = generator.answer("How do sensor nodes save battery energy?", k=2, model="m",
                                       backend="ollama", thresholds=self.thresholds)
         prompt = llm.call_args.args[0]
-        self.assertIn("[1] (arXiv:0704.0001)", prompt)
-        self.assertIn("[2] (arXiv:", prompt)
+        self.assertIn("Source [1]\nTitle: Sensor energy\nAbstract: Neighboring", prompt)
+        self.assertIn("Source [2]", prompt)
         self.assertEqual([s["n"] for s in result["sources"]], [1, 2])
         self.assertEqual(result["sources"][0]["url"], "https://arxiv.org/abs/0704.0001")
         self.assertFalse(result["refused"])
@@ -90,25 +90,35 @@ class Answer(unittest.TestCase):
         llm = mock.Mock()
         with mock.patch.object(generator, "generate", llm):
             result = generator.answer("Яка найкраща температура для випікання хліба?", backend="ollama",
-                                      model="m", thresholds={"dense": 0.99, "rerank": 0.0})
+                                      model="m", thresholds={"low": 0.99, "high": 0.99})
         llm.assert_not_called()
         self.assertTrue(result["refused"])
         self.assertEqual(result["refusal_reason"], "low_score")
         self.assertEqual(result["answer"], generator.REFUSAL["uk"])
 
+    def test_grey_zone_answers_with_uncertain_confidence(self):
+        with mock.patch.object(generator, "generate", return_value="Nodes share relaying [1].") as llm:
+            result = generator.answer("How do sensor nodes save battery energy?", backend="ollama", model="m",
+                                      thresholds={"low": 0.1, "high": 0.99})
+        llm.assert_called_once()
+        self.assertFalse(result["refused"])
+        self.assertEqual(result["confidence"], "uncertain")
+
     def test_llm_not_found_becomes_refusal(self):
-        with mock.patch.object(generator, "generate", return_value="NOT_FOUND"):
-            result = generator.answer("How do sensor nodes save battery energy?", backend="ollama",
-                                      model="m", thresholds=self.thresholds)
-        self.assertTrue(result["refused"])
-        self.assertEqual(result["refusal_reason"], "llm")
+        for reply in ("NOT_FOUND", "The provided sources do not explain this. NOT_FOUND",
+                      "The sources do not specify how bees make honey."):
+            with mock.patch.object(generator, "generate", return_value=reply):
+                result = generator.answer("How do sensor nodes save battery energy?", backend="ollama",
+                                          model="m", thresholds=self.thresholds)
+            self.assertTrue(result["refused"], reply)
+            self.assertEqual(result["refusal_reason"], "llm")
 
     def test_without_rag_no_sources(self):
         with mock.patch.object(generator, "generate", return_value="Plain answer.") as llm:
             result = generator.answer("What is BERT?", use_rag=False, backend="ollama", model="m")
         self.assertEqual(result["sources"], [])
         self.assertEqual(result["answer"], "Plain answer.")
-        self.assertNotIn("Sources", llm.call_args.args[0])
+        self.assertNotIn("Source [", llm.call_args.args[0])
 
     def test_hyde_uses_query_similarity_for_refusal(self):
         with mock.patch.object(query, "generate", return_value="Sensor nodes relay to save battery energy."), \

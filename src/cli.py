@@ -7,7 +7,6 @@
 """
 import argparse
 import json
-import sys
 
 from .citations import STATUS_LABELS
 from .generator import answer
@@ -18,11 +17,16 @@ def print_result(result: dict) -> None:
     cfg = result["config"]
     print(f"\n== Відповідь ({cfg['model']}, {cfg['backend']}, RAG={'так' if cfg['use_rag'] else 'ні'}, "
           f"HyDE={'так' if cfg['hyde'] else 'ні'}, reranker={'так' if cfg['rerank'] else 'ні'})\n")
+    if result["confidence"] == "uncertain" and not result["refused"]:
+        print("[!] Джерела можуть не відповідати питанню — перевірте їх.\n")
     print(result["answer"])
+    if result["relevance"] is not None:
+        t = cfg["thresholds"]
+        print(f"\n[релевантність {result['relevance']:.3f}; пороги: відмова < {t['low']:.3f}, "
+              f"попередження < {t['high']:.3f}]")
     if result["refused"]:
-        reason = {"low_score": "схожість нижча за поріг", "llm": "LLM не знайшла відповіді в джерелах"}
-        print(f"\n[відмова: {reason[result['refusal_reason']]}; релевантність {result['relevance']:.3f}, "
-              f"поріг {cfg.get('threshold', float('nan')):.3f}]")
+        reason = {"low_score": "схожість нижча за нижній поріг", "llm": "LLM не знайшла відповіді в джерелах"}
+        print(f"[відмова: {reason[result['refusal_reason']]}]")
 
     unsupported = [c for c in result["claims"] if c["status"] not in ("ok", "short")]
     if result["claims"]:
@@ -46,15 +50,10 @@ def print_result(result: dict) -> None:
 
 
 def main():
-    # Консоль Windows за замовчуванням не UTF-8 — без цього українські літери ламаються.
-    for stream in (sys.stdout, sys.stderr):
-        if hasattr(stream, "reconfigure"):
-            stream.reconfigure(encoding="utf-8")
-
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("query")
     p.add_argument("-k", type=int, default=5, help="кількість джерел для LLM")
-    p.add_argument("--model", help="модель LLM (за замовчуванням qwen3:4b для ollama)")
+    p.add_argument("--model", help="модель LLM (за замовчуванням qwen3:4b-instruct для ollama)")
     p.add_argument("--backend", choices=BACKENDS)
     p.add_argument("--no-rag", action="store_true", help="питати LLM без пошуку")
     p.add_argument("--hyde", action="store_true", help="пошук за гіпотетичною анотацією")
